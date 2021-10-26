@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React,{ useState, useEffect } from 'react'
+import MainNews from './MainNews'
 
 function Landing() {
     const [newsData, setNewsData] = useState({
@@ -10,23 +11,23 @@ function Landing() {
     const fetchNews= async () => {
         const categories= Object.keys(newsData)
     
-        try{
-        let res= await categories.reduce( async (prevPromise, category)=>{
-            const acc= await prevPromise
-            const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
-            const resObj= await response.data
-            const data=  resObj.data
-            //console.log(data)
-            return {...acc,[category]: data}
-        },Promise.resolve({}))
-        console.log(res)
-        setNewsData(res)
-        }catch(error)
-        { console.log(error)}
+        // try{
+        // let res= await categories.reduce( async (prevPromise, category)=>{
+        //     const acc= await prevPromise
+        //     const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+        //     const resObj= await response.data
+        //     const data=  resObj.data
+        //     //console.log(data)
+        //     return {...acc,[category]: data}
+        // },Promise.resolve({}))
+        // console.log(res)
+        // setNewsData(res)
+        // }catch(error)
+        // { console.log(error)}
         
-        // const response= await axios.get('https://inshortsapi.vercel.app/news?category=sports')
-        // const data= await response.data.data
-        // setNewsData( prev => {return{...prev,['sports']: data}})
+        const response= await axios.get('https://inshortsapi.vercel.app/news?category=sports')
+        const data= await response.data.data
+        setNewsData( prev => {return{...prev,['sports']: data}})
         
         
         
@@ -34,10 +35,11 @@ function Landing() {
     useEffect(()=> {
         fetchNews()   
     },[])
-    console.log('--',newsData)
+    console.log(newsData.sports.length)
     return (
-        <div>
-         
+        <div className="flex justify-center">
+            <MainNews category='sports' data={newsData.sports[0]} />
+            
         </div>
     )
 }

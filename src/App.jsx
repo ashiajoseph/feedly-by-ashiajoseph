@@ -1,13 +1,15 @@
 import './App.css';
 import Navbar from './components/Navbar'
 import Landing from './components/Landing'
-
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-      <Landing />
-    </div>
+      <Switch>
+      <Route exact path="/" component={Landing} />
+      </Switch>
+    </Router>
   );
 }
 
