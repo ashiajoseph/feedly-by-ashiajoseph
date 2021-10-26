@@ -4,6 +4,7 @@ import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 
 
 function Navbar() {
+    const toggle= ()=> { console.log('icon ')}
     return (
         <div className="flex flex-row justify-between border-b-2 border-opacity-75">
             <div className="p-3 m-2">
@@ -12,8 +13,8 @@ function Navbar() {
             </Typography>
             </div>
             <div className="flex flex-row items-center ">
-                <Search className="mr-4"/>
-                <Notification className="mr-4"/>
+                <Search className="mr-5 cursor-pointer" onClick={toggle}/>
+                <Notification className="mr-5 cursor-pointer" onClick={toggle}/>                
                 <Button
                 onClick={()=> {}}
                 size="large"
