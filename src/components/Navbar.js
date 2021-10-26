@@ -22,7 +22,6 @@ function Navbar() {
                 icon={Filter}
                 className= "mr-5"
               />
-
             </div>
         </div> 
     )
