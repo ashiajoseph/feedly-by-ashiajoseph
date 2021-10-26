@@ -9,37 +9,43 @@ function Landing() {
         business: [],
         world: []})
     const fetchNews= async () => {
-        //const categories= Object.keys(newsData)
+        const categories= Object.keys(newsData)
     
-        // try{
-        // let res= await categories.reduce( async (prevPromise, category)=>{
-        //     const acc= await prevPromise
-        //     const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
-        //     const resObj= await response.data
-        //     const data=  resObj.data
-        //     //console.log(data)
-        //     return {...acc,[category]: data}
-        // },Promise.resolve({}))
-        // console.log(res)
-        // setNewsData(res)
-        // }catch(error)
-        // { console.log(error)}
+        try{
+        let res= await categories.reduce( async (prevPromise, category)=>{
+            const acc= await prevPromise
+            const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+            const resObj= await response.data
+            const data=  resObj.data
+            //console.log(data)
+            return {...acc,[category]: data}
+        },Promise.resolve({}))
+        console.log(res)
+        setNewsData(res)
+        }catch(error)
+        { console.log(error)}
         
-        const response= await axios.get('https://inshortsapi.vercel.app/news?category=sports')
-        const data= await response.data.data
-        setNewsData( prev => {return{...prev,['sports']: data}})
-        
-        
+        // const response= await axios.get('https://inshortsapi.vercel.app/news?category=sports')
+        // const data= await response.data.data
+        // setNewsData( prev => {return{...prev,['sports']: data}})
+  
         
     }
     useEffect(()=> {
         fetchNews()   
     },[])
-    //console.log(newsData.sports.slice(1,5))
+    const categories= Object.keys(newsData)
+    console.log(newsData)
     return (
-        <div className="flex flex-col  items-center	">
-            <MainNews category='sports' data={newsData.sports[0]} />
-            <SubNews category='sports' data={newsData.sports.slice(1,5)}/>
+        <div className=""> 
+            { categories.map((category,index)=>{
+                return (
+                    <div key={index} className="flex flex-col items-center">
+                        <MainNews category={category} data={newsData[category][0]} />
+                        <SubNews data={newsData[category].slice(1,5)} />
+                    </div>
+                )
+            })}
         </div>
     )
 }

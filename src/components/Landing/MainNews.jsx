@@ -12,14 +12,14 @@ function MainNews({category,data}) {
             </Typography>
             <div className="flex flex-row my-6 justify-between">
                 <div className=""><img src="https://picsum.photos/id/1/520/260" alt=""/></div>
-                <div className="flex flex-col  w-1/2">
+                <div className="flex flex-col  w-1/2 mr-2">
                     <Typography style="h3" className="neeto-ui-text-gray-700 mt-2 tracking-wide	leading-8">
                         {data.title}
                     </Typography>
                     <Typography style="body2" className="neeto-ui-text-gray-500 self-end mt-3">
                          {`${data.author} at ${data.time} on ${data.date}`} 
                     </Typography>
-                    <Typography style="body2" className="neeto-ui-text-gray-700 mt-3">
+                    <Typography style="body2" className="neeto-ui-text-gray-700 mt-3 text-justify	">
                          {data.content.slice(0,300)}..... 
                     </Typography>
                     
