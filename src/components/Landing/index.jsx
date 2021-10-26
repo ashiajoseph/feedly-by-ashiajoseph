@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React,{ useState, useEffect } from 'react'
 import MainNews from './MainNews'
-
+import SubNews from './SubNews'
 function Landing() {
     const [newsData, setNewsData] = useState({
         national: [],
@@ -9,7 +9,7 @@ function Landing() {
         business: [],
         world: []})
     const fetchNews= async () => {
-        const categories= Object.keys(newsData)
+        //const categories= Object.keys(newsData)
     
         // try{
         // let res= await categories.reduce( async (prevPromise, category)=>{
@@ -35,13 +35,14 @@ function Landing() {
     useEffect(()=> {
         fetchNews()   
     },[])
-    console.log(newsData.sports.length)
+    //console.log(newsData.sports.slice(1,5))
     return (
-        <div className="flex justify-center">
+        <div className="flex flex-col  items-center	">
             <MainNews category='sports' data={newsData.sports[0]} />
-            
+            <SubNews category='sports' data={newsData.sports.slice(1,5)}/>
         </div>
     )
 }
 
 export default Landing
+//<MainNews category='sports' data={newsData.sports[0]} />
