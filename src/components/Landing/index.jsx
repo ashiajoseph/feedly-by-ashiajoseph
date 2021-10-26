@@ -3,6 +3,7 @@ import React,{ useState, useEffect } from 'react'
 import MainNews from './MainNews'
 import SubNews from './SubNews'
 function Landing() {
+    const [loading, setLoading]= useState(true)
     const [newsData, setNewsData] = useState({
         national: [],
         sports: [],
@@ -29,13 +30,19 @@ function Landing() {
         // const data= await response.data.data
         // setNewsData( prev => {return{...prev,['sports']: data}})
   
-        
+        setLoading(false)
     }
     useEffect(()=> {
         fetchNews()   
     },[])
+
     const categories= Object.keys(newsData)
     console.log(newsData)
+    if(loading)
+        return <div className="text-center">
+            <h2>LOADING...</h2>
+            </div>
+
     return (
         <div className=""> 
             { categories.map((category,index)=>{
