@@ -12,7 +12,18 @@ function Navbar() {
             Feed.ly
             </Typography>
             </div>
-            
+            <div className="flex flex-row items-center ">
+                <Search className="mr-5 cursor-pointer" onClick={toggle}/>
+                <Notification className="mr-5 cursor-pointer" onClick={toggle}/>                
+                <Button
+                onClick={()=> {}}
+                size="large"
+                label="Filter"
+                style="secondary"
+                icon={Filter}
+                className= "mr-5"
+              />
+            </div>
         </div> 
     )
 }
