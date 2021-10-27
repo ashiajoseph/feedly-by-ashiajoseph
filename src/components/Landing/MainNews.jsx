@@ -11,7 +11,7 @@ function MainNews({category,data}) {
                 {`${category} News`}
             </Typography>
             <div className="flex flex-row my-6 justify-between">
-                <div className=""><img src="https://picsum.photos/id/1/520/260" alt=""/></div>
+                <div className=""><img src="https://picsum.photos/id/154/520/260" alt=""/></div>
                 <div className="flex flex-col  w-1/2 mr-2">
                     <Typography style="h3" className="neeto-ui-text-gray-700 mt-2 tracking-wide	leading-8">
                         {data.title}
