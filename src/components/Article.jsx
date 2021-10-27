@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import { useLocation } from 'react-router-dom'
 import { Typography} from "@bigbinary/neetoui/v2"
+import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
 function Article() {
     const [relatedNews, setRelatedNews]= useState([])
@@ -12,17 +13,15 @@ function Article() {
      }
     useEffect(()=>{
         filterRelatedNews()
-
-    })
-    useEffect(() => {
         window.scrollTo(0, 0);
-      }, [location]);
+    },[location])
 
     return (
         <div className="flex justify-center mt-10 mb-5">
             <div className="flex flex-col  ">
-                <Typography style="h1" className="neeto-ui-text-gray-700 tracking-wide	mt-3">
-                {data.title}
+                <Typography style="h1" className="neeto-ui-text-gray-700 tracking-wide	mt-3 ">
+                {data.title} <Copy className="inline neeto-ui-text-gray-600
+cursor-pointer" onClick={()=>{navigator.clipboard.writeText(data.readMoreUrl)}}/>
                 </Typography>  
                 <Typography style="h5" className="neeto-ui-text-gray-500 mt-3">
                 {`${data.author} at ${data.time} on ${data.date}`} 
