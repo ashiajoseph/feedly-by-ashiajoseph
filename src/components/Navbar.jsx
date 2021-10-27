@@ -4,7 +4,7 @@ import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 
 
 const Navbar= ()=>{
-    const toggle= ()=> { console.log('icon ')}
+    const toggle= ()=> { }
     return (
         <div className="flex flex-row justify-between border-b-2 border-opacity-75 mb-5">
             <div className="p-3 m-2">

@@ -7,7 +7,6 @@ const Article= () => {
     const [relatedNews, setRelatedNews]= useState([])
     const location = useLocation()
     const data= location.state
-    //console.log(location.state.fullnews[data])
     const filterRelatedNews =  ()=> {
          setRelatedNews(() => data.fullnews[data.category].filter((news)=> news.url!= data.url))
      }
