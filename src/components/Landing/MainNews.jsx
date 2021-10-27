@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {Link} from 'react-router-dom'
 function MainNews({category,data}) {
-    console.log(data)
+    //console.log(data)
     category =  category[0].toUpperCase()+ category.slice(1).toLowerCase()
 
     return (
