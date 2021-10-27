@@ -1,6 +1,6 @@
 import React from 'react'
 import MiniNews from './MiniNews'
-function SubNews({category, data, fullnews}) {
+const SubNews= ({category, data, fullnews}) => {
     //console.log(data)
     return (
         <div className="flex flex-row flex-wrap my-3 py-6 border-b-2 justify-between">

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Typography} from "@bigbinary/neetoui/v2"
 import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
-function Article() {
+const Article= () => {
     const [relatedNews, setRelatedNews]= useState([])
     const location = useLocation()
     const data= location.state

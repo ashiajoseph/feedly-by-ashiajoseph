@@ -2,7 +2,7 @@ import axios from 'axios'
 import React,{ useState, useEffect, createContext } from 'react'
 import MainNews from './MainNews'
 import SubNews from './SubNews'
-function Landing() {
+const Landing= () => {
     const [loading, setLoading]= useState(true)
     const [newsData, setNewsData] = useState({
         national: [],
