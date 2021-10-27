@@ -23,7 +23,7 @@ function MainNews({category,data}) {
                          {data.content.slice(0,300)}..... 
                     </Typography>
                     
-                    <Link to="" className="mt-3 text-read_more">Read More</Link>
+                    <Link to={{ pathname: "/article",state: {img_src:"https://picsum.photos/id/164/520/260",category, ...data}  }} className="mt-3 text-read_more">Read More</Link>
                     
                 </div>
             </div>

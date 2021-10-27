@@ -5,18 +5,18 @@ import { Typography} from "@bigbinary/neetoui/v2"
 import SubNews from './Landing/SubNews'
 function Article() {
     const [relatedNews, setRelatedNews]= useState([])
-    const data = useLocation().state
-    console.log(data)
-    const fetchandfilterRelatedNews = async ()=> {
-         const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${data.category}`)
-         const relatedNewsArray= await response.data.data
-         setRelatedNews((prev) => relatedNewsArray.filter((news)=> news.url!= data.url))
+    const location = useLocation()
+    const data= location.state
+    console.log(data.fullnews)
+    const filterRelatedNews =  ()=> {
+         setRelatedNews((prev) => data.fullnews[data.category].filter((news)=> news.url!= data.url))
      }
-
     useEffect(()=>{
-        fetchandfilterRelatedNews()
+        filterRelatedNews()
     },[])
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [location]);
 
     return (
         <div className="flex justify-center mt-10 mb-5">
