@@ -1,5 +1,4 @@
 import React, {useState,useEffect} from 'react'
-import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { Typography} from "@bigbinary/neetoui/v2"
 import SubNews from './Landing/SubNews'
@@ -7,7 +6,7 @@ function Article() {
     const [relatedNews, setRelatedNews]= useState([])
     const location = useLocation()
     const data= location.state
-    console.log(data.fullnews)
+    console.log(location)
     const filterRelatedNews =  ()=> {
          setRelatedNews((prev) => data.fullnews[data.category].filter((news)=> news.url!= data.url))
      }
@@ -42,7 +41,7 @@ function Article() {
                      </Typography>
                 </div>
                 <div className="flex flex-col items-center ">
-                        <SubNews category={data.category} data={relatedNews.slice(1,5)} />
+                        <SubNews category={data.category} data={relatedNews.slice(1,5)} fullnews={data.fullnews} />
                 </div>
             </div>
         </div>

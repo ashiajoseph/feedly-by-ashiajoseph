@@ -17,7 +17,7 @@ function MiniNews({category,data, fullnews}) {
                          {`${data.author} at ${data.time} on ${data.date}`} 
                     </Typography>
                     
-                    <Link to={{ pathname: "/article",state: {img_src:`${img_src}550/300`,category, ...data,fullnews} }} className="mt-3 text-read_more">Read More</Link>
+                    <Link to={{ pathname:`/article/${data.url.slice(33)}`,state: {img_src:`${img_src}550/300`,category, ...data,fullnews} }} className="mt-3 text-read_more">Read More</Link>
   
                     
                 </div>
@@ -26,3 +26,4 @@ function MiniNews({category,data, fullnews}) {
 }
 
 export default MiniNews
+{/* <Link to={{ pathname: `/article`,state: {img_src:`${img_src}550/300`,category, ...data,fullnews} }} className="mt-3 text-read_more">Read More</Link> */}
