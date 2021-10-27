@@ -1,11 +1,10 @@
 import React from 'react'
-
 import MiniNews from './MiniNews'
-function SubNews({category, data}) {
+function SubNews({category, data, fullnews}) {
     //console.log(data)
     return (
-        <div className="grid grid-cols-2 my-3 py-6 w-78 border-b-2 text-justify ">
-           {  data.map(news => <MiniNews data={news}/>) 
+        <div className="flex flex-row flex-wrap my-3 py-6 border-b-2 justify-between">
+           {  data.map((news,index) => <MiniNews key={index} data={news} category={category} fullnews= {fullnews}/>) 
            }   
         </div>
     )

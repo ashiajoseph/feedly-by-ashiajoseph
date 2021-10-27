@@ -2,13 +2,19 @@ import './App.css';
 import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import Article from './components/Article';
+import Error from "./components/Error"
 function App() {
   return (
     <Router>
       <Navbar />
-      <Switch>
-      <Route exact path="/" component={Landing} />
-      </Switch>
+      <div className="container w-78 mx-auto">
+        <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route  path="/article/:id" component={Article} />
+        <Route path="*" component={Error} />
+        </Switch>
+      </div>
     </Router>
   );
 }

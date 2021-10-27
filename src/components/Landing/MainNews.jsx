@@ -1,17 +1,17 @@
 import React from 'react'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {Link} from 'react-router-dom'
-function MainNews({category,data}) {
+function MainNews({category,data,fullnews}) {
     //console.log(data)
-    category =  category[0].toUpperCase()+ category.slice(1).toLowerCase()
+    const heading =  category[0].toUpperCase()+ category.slice(1).toLowerCase()
 
     return (
-        <div className="mt-10  border-b-2  w-78">
+        <div className=" mt-10  border-b-2 ">
             <Typography style="h2" className="neeto-ui-text-gray-800">
-                {`${category} News`}
+                {`${heading} News`}
             </Typography>
-            <div className="flex flex-row my-6 justify-between">
-                <div className=""><img src="https://picsum.photos/id/154/520/260" alt=""/></div>
+            <div className="flex flex-row my-6 justify-between ">
+                <div className="w-1/2"><img src="https://picsum.photos/id/164/520/260" alt=""/></div>
                 <div className="flex flex-col  w-1/2 mr-2">
                     <Typography style="h3" className="neeto-ui-text-gray-700 mt-2 tracking-wide	leading-8">
                         {data.title}
@@ -23,7 +23,7 @@ function MainNews({category,data}) {
                          {data.content.slice(0,300)}..... 
                     </Typography>
                     
-                    <Link to="" className="mt-3 text-read_more">Read More</Link>
+                    <Link to={{ pathname:`/article/${data.url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, ...data,fullnews}  }} className="mt-3 text-read_more">Read More</Link>
                     
                 </div>
             </div>
