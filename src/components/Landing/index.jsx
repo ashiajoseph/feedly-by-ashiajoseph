@@ -63,7 +63,7 @@ function Landing() {
                 return (
      
                     <div key={index} className="flex flex-col items-center ">
-                        <MainNews category={category} data={categoryNews[0]} />
+                        <MainNews category={category} data={categoryNews[0]} fullnews= {newsData} />
                         <SubNews category={category} data={categoryNews.slice(1,5)} fullnews= {newsData} />
                     </div>
                 )

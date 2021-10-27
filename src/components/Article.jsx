@@ -6,13 +6,14 @@ function Article() {
     const [relatedNews, setRelatedNews]= useState([])
     const location = useLocation()
     const data= location.state
-    console.log(location)
+    //console.log(location.state.fullnews[data])
     const filterRelatedNews =  ()=> {
-         setRelatedNews((prev) => data.fullnews[data.category].filter((news)=> news.url!= data.url))
+         setRelatedNews(() => data.fullnews[data.category].filter((news)=> news.url!= data.url))
      }
     useEffect(()=>{
         filterRelatedNews()
-    },[])
+
+    })
     useEffect(() => {
         window.scrollTo(0, 0);
       }, [location]);
