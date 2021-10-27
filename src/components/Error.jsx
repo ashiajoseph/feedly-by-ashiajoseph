@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Typography, Button} from "@bigbinary/neetoui/v2";
 import { Home } from "@bigbinary/neeto-icons";
 
-function Error() {
+const Error= ()=>{
     const history = useHistory();
     return ( 
         <div className="flex flex-col justify-center items-center my-40">

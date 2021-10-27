@@ -3,7 +3,7 @@ import { Typography, Button} from "@bigbinary/neetoui/v2";
 import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 
 
-function Navbar() {
+const Navbar= ()=>{
     const toggle= ()=> { console.log('icon ')}
     return (
         <div className="flex flex-row justify-between border-b-2 border-opacity-75 mb-5">
