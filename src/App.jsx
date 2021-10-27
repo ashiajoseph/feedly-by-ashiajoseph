@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Article from './components/Article';
+import Error from "./components/Error"
 function App() {
   return (
     <Router>
@@ -11,6 +12,7 @@ function App() {
         <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/article" component={Article} />
+        <Route path="*" component={Error} />
         </Switch>
       </div>
     </Router>
