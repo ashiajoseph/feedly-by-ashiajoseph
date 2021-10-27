@@ -7,10 +7,12 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Switch>
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/article" component={Article} />
-      </Switch>
+      <div className="container w-78 mx-auto">
+        <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/article" component={Article} />
+        </Switch>
+      </div>
     </Router>
   );
 }
