@@ -47,7 +47,7 @@ function Landing() {
         <div className=""> 
             { categories.map((category,index)=>{
                 return (
-                    <div key={index} className="flex flex-col items-center">
+                    <div key={index} className="flex flex-col items-center ">
                         <MainNews category={category} data={newsData[category][0]} />
                         <SubNews data={newsData[category].slice(1,5)} />
                     </div>

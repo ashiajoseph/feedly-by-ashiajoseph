@@ -13,7 +13,7 @@ function MiniNews({data}) {
                          {`${data.author} at ${data.time} on ${data.date}`} 
                     </Typography>
                     
-                    <Link to="" className="mt-2">Read More</Link>
+                    <Link to="" className="mt-2 text-read_more">Read More</Link>
                     
                 </div>
             </div>

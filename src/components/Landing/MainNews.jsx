@@ -6,7 +6,7 @@ function MainNews({category,data}) {
     category =  category[0].toUpperCase()+ category.slice(1).toLowerCase()
 
     return (
-        <div className="mt-10  border-b-2  w-4/5">
+        <div className="mt-10  border-b-2  w-78">
             <Typography style="h2" className="neeto-ui-text-gray-800">
                 {`${category} News`}
             </Typography>
@@ -23,7 +23,7 @@ function MainNews({category,data}) {
                          {data.content.slice(0,300)}..... 
                     </Typography>
                     
-                    <Link to="" className="mt-3">Read More</Link>
+                    <Link to="" className="mt-3 text-read_more">Read More</Link>
                     
                 </div>
             </div>
