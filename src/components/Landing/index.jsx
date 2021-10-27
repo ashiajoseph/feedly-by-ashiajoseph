@@ -58,7 +58,7 @@ function Landing() {
         <div className=""> 
             {  Object.keys(newsData).map((category,index)=>{
                 let categoryNews= !filter ? filterNews(category) : newsData[category]
-                console.log(categoryNews.slice(1,5))      
+                   
                 return (
                     <div key={index} className="flex flex-col items-center ">
                         <MainNews category={category} data={categoryNews[0]} />
