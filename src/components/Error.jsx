@@ -8,7 +8,7 @@ function Error() {
     return ( 
         <div className="flex flex-col justify-center items-center my-40">
             <div className="mb-10">
-                <img src={process.env.PUBLIC_URL + '/error.jpg'} alt="Error diagram"/>
+                <img src={process.env.PUBLIC_URL + '/error.svg'} alt="Error diagram"/>
             </div>
             <Typography style="h3" weight="semibold" className="neeto-ui-text-gray-800  ">
             You have landed somwhere
