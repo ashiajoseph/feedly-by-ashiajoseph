@@ -29,11 +29,9 @@ const Landing= () => {
                 const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
                 const resObj= await response.data
                 const data=  resObj.data
-                //console.log(data)
                 acc[category]= data
                 return {...acc}
             },Promise.resolve({}))
-            //console.log(res)
             setNewsData(res)
             }catch(error)
             { console.log(error)}
@@ -45,11 +43,11 @@ const Landing= () => {
             setLoading(false)
         }
         fetchNews()  
-        console.log(new Date('26 Oct 2021').toDateString()) 
+
     },[])
 
     const categories= Object.keys(newsData)
-    //console.log(newsData)
+ 
     if(loading)
         return <div className="text-center">
             <h2>LOADING...</h2>
