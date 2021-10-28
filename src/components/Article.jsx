@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Typography} from "@bigbinary/neetoui/v2"
 import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
+import Container from './Container';
 const Article= () => {
     const [relatedNews, setRelatedNews]= useState([])
     const location = useLocation()
@@ -16,6 +17,7 @@ const Article= () => {
     },[location])
 
     return (
+    <Container>
         <div className="flex justify-center mt-10 mb-5">
             <div className="flex flex-col  ">
                 <Typography style="h1" className="neeto-ui-text-gray-700 tracking-wide	mt-3 ">
@@ -44,6 +46,7 @@ cursor-pointer" onClick={()=>{navigator.clipboard.writeText(data.readMoreUrl)}}/
                 </div>
             </div>
         </div>
+        </Container>
     )
 }
 
