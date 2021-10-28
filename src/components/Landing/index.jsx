@@ -29,13 +29,11 @@ const Landing= () => {
     
     return (
         <Container>
-            <div className="container w-78 mx-auto">
                 <div className="flex flex-col"> 
 
                     { newsData.map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
                     )}
                 </div>
-            </div>
         </Container>
         
     )
