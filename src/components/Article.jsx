@@ -8,7 +8,7 @@ const Article= () => {
     const location = useLocation()
     const data= location.state
     const filterRelatedNews =  ()=> {
-         setRelatedNews(() => data.fullnews[data.category].filter((news)=> news.url!= data.url))
+         setRelatedNews(() => data.fullnews.filter((news)=> news.url!== data.url))
      }
     useEffect(()=>{
         filterRelatedNews()

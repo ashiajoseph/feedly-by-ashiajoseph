@@ -1,26 +1,44 @@
-import axios from 'axios'
 import React,{ useState, useEffect, createContext } from 'react'
-import MainNews from './MainNews'
-import SubNews from './SubNews'
+import NewsCategory from './NewsCategory'
+import axios from 'axios'
 const Landing= () => {
-    const [loading, setLoading]= useState(true)
-    const [newsData, setNewsData] = useState({
-        national: [],
-        sports: [],
-        business: [],
-        world: []})
+    
+    const [newsData,setNewsData] = useState(['national','sports','business','world'])
+    
     const [filter, setFilter]= useState(true)   
     //const newsContext = createContext({});
-    const filterNews= (category) => {
+    // const filterNews= (category) => {
 
-            return newsData[category].filter((news) => {
-              let today= new Date().toDateString()
-              let newsDate= new Date(news.date.slice(0,11)).toDateString()
-              return today===newsDate? true: false;
-            })
+    //         return newsData[category].filter((news) => {
+    //           let today= new Date().toDateString()
+    //           let newsDate= new Date(news.date.slice(0,11)).toDateString()
+    //           return today===newsDate? true: false;
+    //         })
+    // }
+    const fetchCategoryNews = async (category) => {
+        try{
+        const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+        const data= await response.data.data
+        return data
+        }catch(error)
+        { console.error(error)}
     }
+  
+    
+    return (
+        
+        <div className="flex flex-col"> 
 
-    useEffect(()=> {
+            { newsData.map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
+            )}
+        </div>
+        
+    )
+}
+/* Object.keys(newsData).map((category,index)=>{
+                let categoryNews= !filter ? filterNews(category) : newsData[category]} 
+                
+  useEffect(()=> {
         const fetchNews= async () => {
         
             try{
@@ -39,37 +57,9 @@ const Landing= () => {
             // const response= await axios.get('https://inshortsapi.vercel.app/news?category=sports')
             // const data= await response.data.data
             // setNewsData( prev => {return{...prev,['sports']: data}})
-    
-            setLoading(false)
+
         }
-        fetchNews()  
+       // fetchNews()  
 
-    },[])
-
-    const categories= Object.keys(newsData)
- 
-    if(loading)
-        return <div className="text-center">
-            <h2>LOADING...</h2>
-            </div>
-    return (
-        
-        <div className=""> 
-            {  Object.keys(newsData).map((category,index)=>{
-                let categoryNews= !filter ? filterNews(category) : newsData[category]
-                   
-                return (
-     
-                    <div key={index} className="flex flex-col items-center ">
-                        <MainNews category={category} data={categoryNews[0]} fullnews= {newsData} />
-                        <SubNews category={category} data={categoryNews.slice(1,5)} fullnews= {newsData} />
-                    </div>
-                )
-            })}
-        </div>
-   
-    )
-}
-
+    },[])*/
 export default Landing
-//<MainNews category='sports' data={newsData.sports[0]} />
