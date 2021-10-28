@@ -2,11 +2,11 @@ import React,{ useState, useEffect, createContext } from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
-
 const Landing= () => {
     
     const [newsData,setNewsData] = useState(['national','sports','business','world'])
-    
+    const [ categoryCheckbox, toggleCheckbox] = useState({national: true,business: false, sports: true, world: false})
+    const categoryContext= createContext(categoryCheckbox)
     const [filter, setFilter]= useState(true)   
     //const newsContext = createContext({});
     // const filterNews= (category) => {
@@ -28,13 +28,15 @@ const Landing= () => {
   
     
     return (
-        <Container>
-                <div className="flex flex-col"> 
+        <categoryContext.Provider value={categoryCheckbox}>
+            <Container>
+                    <div className="flex flex-col"> 
 
-                    { newsData.map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
-                    )}
-                </div>
-        </Container>
+                        { Object.keys(categoryCheckbox).filter((category)=> categoryCheckbox[category]).map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
+                        )}
+                    </div>
+            </Container>
+        </categoryContext.Provider>
         
     )
 }
@@ -65,4 +67,5 @@ const Landing= () => {
        // fetchNews()  
 
     },[])*/
-export default Landing
+export Landing 
+

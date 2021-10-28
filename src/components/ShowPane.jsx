@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Pane } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
+import  CategoryCheckbox from './CategoryCheckbox';
 
 const ShowPane = ({showPane,setShowPane}) => {
+    
+
     return (
         <div>
             <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
@@ -13,11 +16,12 @@ const ShowPane = ({showPane,setShowPane}) => {
             </Typography>
             </Pane.Header>
             <Pane.Body>
-            <Typography style="body2">
             <Typography style="h4" weight="semibold" className="neeto-ui-text-gray-700">
                 Category
             </Typography>
-            </Typography>
+            {/* <div className="ml-4">
+                {Object.keys(categoryCheckbox).map((id,index) => <CategoryCheckbox key={index} id={id} checked={categoryCheckbox[id]} toggleCheckbox={toggleCheckbox}/> )}
+            </div> */}
             </Pane.Body>
             <Pane.Footer className="flex items-center space-x-4 border-t-2 neeto-ui-text-gray-300 ">
             <Button
