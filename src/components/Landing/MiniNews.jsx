@@ -2,7 +2,7 @@ import React,{ useContext } from 'react'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {Link} from 'react-router-dom'
 
-const MiniNews= ({category,data, fullnews})=>{
+const MiniNews= ({category,data,fullnews})=>{
     //const numRef= useRef(Math.floor(Math.random() * 100 ))
     const img_src= `https://picsum.photos/id/33/`
    
