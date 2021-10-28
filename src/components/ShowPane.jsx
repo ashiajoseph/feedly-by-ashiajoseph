@@ -7,7 +7,7 @@ import { categoryContext } from './categoryContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
     const [categoryCheckbox, toggleSave, save]= useContext(categoryContext)
- 
+
     return (
         <div>
             <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
