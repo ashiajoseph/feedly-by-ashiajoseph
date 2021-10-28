@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect,useRef} from 'react'
 import MainNews from './MainNews'
 import SubNews from './SubNews'
 
@@ -6,15 +6,18 @@ import SubNews from './SubNews'
 const NewsCategory = ({category,fetchCategoryNews}) => {
     const [loading, setLoading] = useState(true)
     const [categoryNews, setCategoryNews]= useState([])
-    
+    const isMounted = useRef(false)
     const fetchNews= async () => {
         const data= await fetchCategoryNews(category);
-        setCategoryNews(data)
+        if (isMounted)
+            setCategoryNews(data)
         setLoading(false)
 
     }
     useEffect(()=>{
+        isMounted.current= true
         fetchNews()
+        return () => {isMounted.current = false}
     },[])
     
     if (loading)
