@@ -6,7 +6,7 @@ import  CategoryCheckbox from './CategoryCheckbox';
 import { categoryContext } from './categoryContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
-    const [categoryCheckbox, toggleSave, save]= useContext(categoryContext)
+    const [categoryCheckbox, toggleFilter, filter]= useContext(categoryContext)
 
     return (
         <div>
@@ -32,7 +32,7 @@ const ShowPane = ({showPane,setShowPane}) => {
                 icon={Check}
                 size="large"
                 label="Save Changes"
-                onClick={() => { toggleSave(!save); setShowPane(false)}}
+                onClick={() => { toggleFilter(!filter); setShowPane(false)}}
                 className="mb-5"
             />
             <Button

@@ -6,9 +6,9 @@ const categoryContext = createContext()
 const CategoryProvider = ({children}) => {
     const categoryCheckbox = useRef({all: false, automobile: false, business: true, entertainment: false,national: true,politics: false, science: false, startup: false, sports: true, technology:false,  world: false   })
     const archive = useRef(true)
-    const [save, toggleSave]= useState(false)
+    const [filter, toggleFilter]= useState(false)
     return (
-        <categoryContext.Provider value={[categoryCheckbox,toggleSave, save, archive]} >
+        <categoryContext.Provider value={[categoryCheckbox,toggleFilter, filter, archive]} >
           {children}
         </categoryContext.Provider>
       );

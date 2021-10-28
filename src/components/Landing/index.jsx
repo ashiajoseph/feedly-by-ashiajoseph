@@ -1,15 +1,14 @@
-import React,{ useState, useContext} from 'react'
+import React,{ useState, useEffect, useContext} from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
 import { categoryContext } from '../categoryContext';
 
 const Landing= () => {
-    const [categoryCheckbox]= useContext(categoryContext)
+    const [categoryCheckbox, filter]= useContext(categoryContext)
     // const [newsData,setNewsData] = useState(['national','sports','business','world'])
     // const [ categoryCheckbox, toggleCheckbox] = useState({national: true,business: false, sports: true, world: false})
-   
-    const [filter, setFilter]= useState(true)   
+      
     //const newsContext = createContext({});
     // const filterNews= (category) => {
 
@@ -27,7 +26,9 @@ const Landing= () => {
         }catch(error)
         { console.error(error)}
     }
-  
+    useEffect(() => {
+        
+    }, [filter])
     return (
         
             <Container>

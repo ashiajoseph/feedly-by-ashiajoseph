@@ -1,9 +1,10 @@
-import React,{useState, useEffect,useRef} from 'react'
+import React,{useState, useEffect,useRef, useContext} from 'react'
 import MainNews from './MainNews'
 import SubNews from './SubNews'
-
+import { categoryContext } from '../categoryContext'
 
 const NewsCategory = ({category,fetchCategoryNews}) => {
+    const [filter] = useContext(categoryContext)
     const [loading, setLoading] = useState(true)
     const [categoryNews, setCategoryNews]= useState([])
     const isMounted = useRef(false)
@@ -17,8 +18,8 @@ const NewsCategory = ({category,fetchCategoryNews}) => {
     useEffect(()=>{
         isMounted.current= true
         fetchNews()
-        return () => {isMounted.current = false}
-    },[])
+        return () => { setCategoryNews([]); isMounted.current = false}
+    },[filter])
     
     if (loading)
         return <h3>Loading ...</h3>
