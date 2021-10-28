@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
-import {categoryContext} from './Landing'
+
 const Container = ({children}) => {
 
     return (

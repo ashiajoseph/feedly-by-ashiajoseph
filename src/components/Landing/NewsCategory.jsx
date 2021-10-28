@@ -1,7 +1,7 @@
 import React,{useState, useEffect,useRef, useContext} from 'react'
 import MainNews from './MainNews'
 import SubNews from './SubNews'
-import { categoryContext } from '../categoryContext'
+
 
 const NewsCategory = ({category,categoryNews}) => {
     // const [categoryCheckbox, filter] = useContext(categoryContext)
