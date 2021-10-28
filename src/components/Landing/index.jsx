@@ -1,6 +1,8 @@
 import React,{ useState, useEffect, createContext } from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
+import Container from "../Container";
+
 const Landing= () => {
     
     const [newsData,setNewsData] = useState(['national','sports','business','world'])
@@ -26,12 +28,15 @@ const Landing= () => {
   
     
     return (
-        
-        <div className="flex flex-col"> 
+        <Container>
+            <div className="container w-78 mx-auto">
+                <div className="flex flex-col"> 
 
-            { newsData.map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
-            )}
-        </div>
+                    { newsData.map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
+                    )}
+                </div>
+            </div>
+        </Container>
         
     )
 }
