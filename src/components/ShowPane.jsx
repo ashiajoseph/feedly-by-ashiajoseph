@@ -20,9 +20,12 @@ const ShowPane = ({showPane,setShowPane}) => {
             <Typography style="h4" weight="semibold" className="neeto-ui-text-gray-700">
                 Category
             </Typography>
-             <div className="ml-4">
+             <div className="ml-6">
                 {Object.keys(categoryCheckbox.current).map((id,index) => <CategoryCheckbox key={index} id={id} /> )}
             </div> 
+            <div className="ml-4 pl-2 border-t-2 neeto-ui-text-gray-300 w-90">
+            <CategoryCheckbox  id={'include archived articles'}/>
+            </div>
             </Pane.Body>
             <Pane.Footer className="flex items-center space-x-4 border-t-2 neeto-ui-text-gray-300 ">
             <Button
