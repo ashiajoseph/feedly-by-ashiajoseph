@@ -6,10 +6,9 @@ import { categoryContext } from '../categoryContext';
 
 const Landing= () => {
     const [categoryCheckbox, filter]= useContext(categoryContext)
-    // const [newsData,setNewsData] = useState(['national','sports','business','world'])
-    // const [ categoryCheckbox, toggleCheckbox] = useState({national: true,business: false, sports: true, world: false})
+    const [loading, setLoading] = useState(true)
+    const [news, setNews]= useState({})
       
-    //const newsContext = createContext({});
     // const filterNews= (category) => {
 
     //         return newsData[category].filter((news) => {
@@ -18,23 +17,43 @@ const Landing= () => {
     //           return today===newsDate? true: false;
     //         })
     // }
-    const fetchCategoryNews = async (category) => {
+    // const fetchCategoryNews = async (category) => {
+    //     try{
+    //     const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+    //     const data= await response.data
+    //     return data
+    //     }catch(error)
+    //     { console.error(error)}
+    // }
+    const fetchNews= async () => {
+        const categories= Object.keys(categoryCheckbox.current)
         try{
-        const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
-        const data= await response.data.data
-        return data
+        let res= await categories.reduce( async (prevPromise, category)=>{
+            const acc= await prevPromise
+            const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+            const resObj= await response.data
+            const data=  resObj.data
+            acc[category]= data
+            return {...acc}
+        },Promise.resolve({}))
+        await setNews(res)
+        await setLoading(false)
         }catch(error)
-        { console.error(error)}
+        { console.log(error)}
+
     }
-    useEffect(() => {
-        
-    }, [filter])
+    useEffect(()=> {
+      fetchNews()  
+    },[])
+    if (loading)
+        return <h3>Loading ...</h3>
+ 
     return (
         
             <Container>
                     { <div className="flex flex-col"> 
 
-                        { Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category]).map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
+                        { Object.keys(news).filter((category)=> categoryCheckbox.current[category]).map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category]} /> 
                         )}
                     </div> }
             </Container>
