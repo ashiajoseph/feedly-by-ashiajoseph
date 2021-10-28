@@ -1,12 +1,14 @@
-import React,{ useState, useEffect, createContext } from 'react'
+import React,{ useState, useContext} from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
+import { categoryContext } from '../categoryContext';
+
 const Landing= () => {
-    
-    const [newsData,setNewsData] = useState(['national','sports','business','world'])
-    const [ categoryCheckbox, toggleCheckbox] = useState({national: true,business: false, sports: true, world: false})
-    const categoryContext= createContext(categoryCheckbox)
+    const [categoryCheckbox]= useContext(categoryContext)
+    // const [newsData,setNewsData] = useState(['national','sports','business','world'])
+    // const [ categoryCheckbox, toggleCheckbox] = useState({national: true,business: false, sports: true, world: false})
+   
     const [filter, setFilter]= useState(true)   
     //const newsContext = createContext({});
     // const filterNews= (category) => {
@@ -26,17 +28,15 @@ const Landing= () => {
         { console.error(error)}
     }
   
-    
     return (
-        <categoryContext.Provider value={categoryCheckbox}>
+        
             <Container>
-                    <div className="flex flex-col"> 
+                    { <div className="flex flex-col"> 
 
-                        { Object.keys(categoryCheckbox).filter((category)=> categoryCheckbox[category]).map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
+                        { Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category]).map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
                         )}
-                    </div>
+                    </div> }
             </Container>
-        </categoryContext.Provider>
         
     )
 }
@@ -67,5 +67,6 @@ const Landing= () => {
        // fetchNews()  
 
     },[])*/
-export Landing 
+export default Landing;
+
 

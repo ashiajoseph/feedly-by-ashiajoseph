@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
 import { Checkbox } from "@bigbinary/neetoui/v2";
+import { categoryContext } from './categoryContext';
 
-const CategoryCheckbox = ({id,toggleCheckbox, checked}) => {
+const CategoryCheckbox = ({id}) => {
+    const [categoryCheckbox]= useContext(categoryContext)
+    const [check,toggle] = useState(categoryCheckbox.current[id])
     const label= id[0].toUpperCase()+ id.slice(1).toLowerCase()
     const handleChange = (e) => {
         const {id,checked}= e.target
-        toggleCheckbox( prev => {
-            return {...prev,[id]: checked}})
+        categoryCheckbox.current[id] = checked
+        toggle(checked)
     }
     return (
         <div className="my-6 neeto-ui-text-gray-700
@@ -14,7 +17,7 @@ const CategoryCheckbox = ({id,toggleCheckbox, checked}) => {
             <Checkbox 
                 id={id}
                 label={label}
-                checked={checked}
+                checked={check}
                 onChange={ handleChange}/>
         </div>
     )
