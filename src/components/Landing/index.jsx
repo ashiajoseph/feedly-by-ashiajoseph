@@ -1,13 +1,14 @@
-import React,{ useState, useEffect, createContext } from 'react'
+import React,{ useState, useEffect, useContext} from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
+import { categoryContext } from '../categoryContext';
 
 const Landing= () => {
-    
-    const [newsData,setNewsData] = useState(['national','sports','business','world'])
-    
-    const [filter, setFilter]= useState(true)   
+    const [categoryCheckbox, filter]= useContext(categoryContext)
+    // const [newsData,setNewsData] = useState(['national','sports','business','world'])
+    // const [ categoryCheckbox, toggleCheckbox] = useState({national: true,business: false, sports: true, world: false})
+      
     //const newsContext = createContext({});
     // const filterNews= (category) => {
 
@@ -25,16 +26,18 @@ const Landing= () => {
         }catch(error)
         { console.error(error)}
     }
-  
-    
+    useEffect(() => {
+        
+    }, [filter])
     return (
-        <Container>
-                <div className="flex flex-col"> 
+        
+            <Container>
+                    { <div className="flex flex-col"> 
 
-                    { newsData.map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
-                    )}
-                </div>
-        </Container>
+                        { Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category]).map((category,index)=> <NewsCategory key={index} category={category}  fetchCategoryNews={fetchCategoryNews} /> 
+                        )}
+                    </div> }
+            </Container>
         
     )
 }
@@ -65,4 +68,6 @@ const Landing= () => {
        // fetchNews()  
 
     },[])*/
-export default Landing
+export default Landing;
+
+

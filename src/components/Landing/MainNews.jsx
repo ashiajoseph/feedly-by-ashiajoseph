@@ -1,9 +1,12 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {Link} from 'react-router-dom'
 const MainNews= ({category,data,fullnews}) => {
     const heading =  category[0].toUpperCase()+ category.slice(1).toLowerCase()
 
+    useEffect(()=> {
+
+    },[data])
     return (
         <div className=" mt-10  border-b-2 ">
             <Typography style="h2" className="neeto-ui-text-gray-800">
