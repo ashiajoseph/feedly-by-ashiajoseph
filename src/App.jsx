@@ -5,6 +5,7 @@ import Article from './components/Article';
 import Error from "./components/Error";
 import { CategoryProvider } from './components/categoryContext';
 const App =()=> {
+  
   return (
     <Router>
       <CategoryProvider >

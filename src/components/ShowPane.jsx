@@ -6,8 +6,11 @@ import  CategoryCheckbox from './CategoryCheckbox';
 import { categoryContext } from './categoryContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
-    const [categoryCheckbox, toggleFilter, filter]= useContext(categoryContext)
+    const {categoryCheckbox, toggleFilter, filter}= useContext(categoryContext)
 
+    const handleClick = () => { 
+        toggleFilter((prev)=> !prev)
+        setShowPane(false)}
     return (
         <div>
             <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
@@ -32,7 +35,7 @@ const ShowPane = ({showPane,setShowPane}) => {
                 icon={Check}
                 size="large"
                 label="Save Changes"
-                onClick={() => { toggleFilter(!filter); setShowPane(false)}}
+                onClick={handleClick}
                 className="mb-5"
             />
             <Button
