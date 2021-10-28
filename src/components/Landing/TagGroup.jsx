@@ -5,7 +5,7 @@ import TagItem from './TagItem';
 
 
 const TagGroup = () => {
-    const [categoryCheckbox,toggleFilter]= useContext(categoryContext)
+    const {categoryCheckbox,toggleFilter}= useContext(categoryContext)
     const filteredCategories= Object.keys(categoryCheckbox.current).filter((category) => categoryCheckbox.current[category])
 
     const handleClose= (category) => {

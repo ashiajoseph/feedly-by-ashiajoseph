@@ -6,7 +6,7 @@ import  CategoryCheckbox from './CategoryCheckbox';
 import { categoryContext } from './categoryContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
-    const [categoryCheckbox, toggleFilter, filter]= useContext(categoryContext)
+    const {categoryCheckbox, toggleFilter, filter}= useContext(categoryContext)
 
     const handleClick = () => { 
         toggleFilter((prev)=> !prev)

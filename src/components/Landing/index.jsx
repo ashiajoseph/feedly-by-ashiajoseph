@@ -5,18 +5,11 @@ import Container from "../Container";
 import { categoryContext } from '../categoryContext';
 import TagGroup from './TagGroup';
 const Landing= () => {
-    const [categoryCheckbox]= useContext(categoryContext)
+    const {categoryCheckbox, archive, filter}= useContext(categoryContext)
     const [loading, setLoading] = useState(true)
     const [news, setNews]= useState({})
       
-    // const filterNews= (category) => {
-
-    //         return newsData[category].filter((news) => {
-    //           let today= new Date().toDateString()
-    //           let newsDate= new Date(news.date.slice(0,11)).toDateString()
-    //           return today===newsDate? true: false;
-    //         })
-    // }
+    
     // const fetchCategoryNews = async (category) => {
     //     try{
     //     const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
@@ -45,9 +38,10 @@ const Landing= () => {
     useEffect(()=> {
       fetchNews()  
     },[])
+
     if (loading)
         return <h3>Loading ...</h3>
- 
+    
     return (
         
             <Container>
