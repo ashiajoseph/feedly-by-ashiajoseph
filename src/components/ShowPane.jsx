@@ -14,15 +14,12 @@ const ShowPane = ({showPane,setShowPane}) => {
             </Pane.Header>
             <Pane.Body>
             <Typography style="body2">
-                Somewhere out in space live The Herculoids! Zok, the laser-ray
-                dragon! Igoo, the giant rock ape! Tundro, the tremendous! Gloop and
-                Gleep, the formless, fearless wonders! With Zandor, their leader,
-                and his wife, Tara, and son, Dorno, they team up to protect their
-                planet from sinister invaders! All-strong! All-brave! All-heroes!
-                They're The Herculoids!
+            <Typography style="h4" weight="semibold" className="neeto-ui-text-gray-700">
+                Category
+            </Typography>
             </Typography>
             </Pane.Body>
-            <Pane.Footer className="flex items-center space-x-2 border-t-2 neeto-ui-text-gray-300 ">
+            <Pane.Footer className="flex items-center space-x-4 border-t-2 neeto-ui-text-gray-300 ">
             <Button
                 icon={Check}
                 size="large"
