@@ -17,7 +17,7 @@ const Navbar= ()=>{
             </div>
             <div className="flex flex-row items-center ">
                 <Tooltip placement={"bottom-start"} content={"Search"}> 
-                    <button><Search className="mr-5 cursor-pointer" onClick={()=> {setOpenSearchBox(true)}}/></button>
+                    <button><Search className="mr-5 cursor-pointer" onClick={()=> {setOpenSearchBox(!openSearchBox)}}/></button>
                 </Tooltip>
                 <Tooltip placement={"bottom-start"} content={"Subscribe"}>
                     <button><Notification className="mr-5 cursor-pointer" onClick={()=> {setShowSubscribeModal(true)}}/></button>
