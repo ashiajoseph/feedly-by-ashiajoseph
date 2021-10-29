@@ -15,7 +15,7 @@ export const Subscribe = ({showSubscribeModal , setShowSubscribeModal}) => {
     const handleClick= (type) => {
       if (type=='submit')
       {  postData() }
-      
+
       setEmail("")
       setShowSubscribeModal(false)
     }
@@ -29,15 +29,15 @@ export const Subscribe = ({showSubscribeModal , setShowSubscribeModal}) => {
       >
         <Modal.Header>
           <img src={process.env.PUBLIC_URL + '/subscribe.png'} alt="Subscribe image"/>
-          <Typography style="h2">Subscribe to Feed.ly</Typography>
+          <Typography style="h2" className="mt-5 ">Subscribe to Feed.ly</Typography>
         </Modal.Header>
         <Modal.Body>
           <Typography style="body2" lineHeight="normal">
           We don’t spam, but, we deliver the latest news in short.
           </Typography>
-
+        <div className="mt-6">
           <Input placeholder="oliver@example.com" value={email} onChange={handleChange}/>
-   
+        </div>
         </Modal.Body>
         <Modal.Footer className="space-x-2">
           <Button
