@@ -48,7 +48,7 @@ const Landing= () => {
 
     
     return (
-        <div>
+        <>
             <Container>
                     { <div className="flex flex-col"> 
                         <TagGroup />
@@ -57,7 +57,7 @@ const Landing= () => {
                     </div> }
                     {  totalArticles.current &&<NoArticleFound news={news}/>}
             </Container>
-        </div>    
+        </>    
             
         
     )
