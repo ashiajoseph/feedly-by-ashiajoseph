@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Typography, Button} from "@bigbinary/neetoui/v2";
+import { Typography, Button, Tooltip} from "@bigbinary/neetoui/v2";
 import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 import ShowPane from './ShowPane.jsx'
 
@@ -14,8 +14,12 @@ const Navbar= ()=>{
             </Typography>
             </div>
             <div className="flex flex-row items-center ">
-                <Search className="mr-5 cursor-pointer" onClick={()=> {}}/>
-                <Notification className="mr-5 cursor-pointer" onClick={()=> {}}/>                
+                <Tooltip placement={"bottom-start"} content={"Search"}> 
+                    <button><Search className="mr-5 cursor-pointer" onClick={()=> {}}/></button>
+                </Tooltip>
+                <Tooltip placement={"bottom-start"} content={"Subscribe"}>
+                    <button><Notification className="mr-5 cursor-pointer" onClick={()=> {}}/></button>
+                </Tooltip>              
                 <Button
                 onClick={() => setShowPane(true)}
                 size="large"
