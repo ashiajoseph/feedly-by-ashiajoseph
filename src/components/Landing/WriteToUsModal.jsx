@@ -7,7 +7,21 @@ import axios from 'axios';
 const WriteToUsModal = ({showModal,setShowModal}) => {
     const [info,setInfo]= useState({name: '', email: '', message: ''})
 
-    
+    const handleChange= (e) => {
+        const {name,value} = e.target
+        setInfo( prevData => {
+            return { ...prevData, [name]: value}
+        })
+    }
+    const handleCancel = () => {
+       setInfo({name: '', email: '', message: ''}) 
+       setShowModal(false)
+    }
+    const handleSubmit =  () => {
+         axios.post("	https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a",info)
+         setInfo({name: '', email: '', message: ''})
+        setShowModal(false)
+    }
     return (
         <div>
            <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="md"
