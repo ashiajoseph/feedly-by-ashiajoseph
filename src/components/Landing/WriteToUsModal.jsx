@@ -17,10 +17,15 @@ const WriteToUsModal = ({showModal,setShowModal}) => {
        setInfo({name: '', email: '', message: ''}) 
        setShowModal(false)
     }
-    const handleSubmit =  () => {
-         axios.post("	https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a",info)
+    const handleSubmit = async() => {
+     try{
+        await axios.post("https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a", info);
+         setShowModal(false)
          setInfo({name: '', email: '', message: ''})
-        setShowModal(false)
+
+     }
+      catch(error)
+      {console.log(error)}  
     }
     return (
         <div>
@@ -33,11 +38,11 @@ const WriteToUsModal = ({showModal,setShowModal}) => {
           <Typography style="body2" lineHeight="normal">
           Write to us about which category interests you and we will fetch them for you daily, for free.
           </Typography>
-          <div className="flex flex-row space-x-8 ">
+          <div className="flex flex-row space-x-8 mt-5">
           <Input label="Name" name="name" placeholder="Oliver Smith" value={info['name']} onChange={handleChange}/>
           <Input label="Email" name="email" placeholder="oliver@example.com" value={info['email']} onChange={handleChange}/>
           </div>
-          <div>
+          <div className="mt-5">
           <Textarea label="Message" name="message" value={info['message']}placeholder="Write your message here." onChange={handleChange}/>
           </div>
         </Modal.Body>
