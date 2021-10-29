@@ -19,7 +19,7 @@ const NewsCategory = ({category,categoryNews}) => {
     filteredNews= (!archive.current)? filterNews() : categoryNews
     const renderComponent= filteredNews.length ? true : false
     categoryCount.current[category]= filteredNews.length
-    console.log(category,categoryCount.current[category] )
+   
 
     return (
         <div className="flex flex-col items-center ">
