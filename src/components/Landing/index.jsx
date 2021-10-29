@@ -1,14 +1,14 @@
-import React,{ useState, useEffect, useContext} from 'react'
+import React,{ useState, useEffect, useContext, useRef} from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
 import { categoryContext } from '../categoryContext';
 import TagGroup from './TagGroup';
 const Landing= () => {
-    const {categoryCheckbox, archive, filter}= useContext(categoryContext)
+    const {categoryCheckbox, getCategoryCount, filter}= useContext(categoryContext)
     const [loading, setLoading] = useState(true)
     const [news, setNews]= useState({})
-      
+    const totalArticles= useRef(0)
     
     // const fetchCategoryNews = async (category) => {
     //     try{
@@ -39,18 +39,26 @@ const Landing= () => {
       fetchNews()  
     },[])
 
+   
+
+    const filteredCategoryList=Object.keys(news).filter((category)=> categoryCheckbox.current[category])
+
     if (loading)
         return <h3>Loading ...</h3>
+
     
     return (
-        
+        <div>
             <Container>
                     { <div className="flex flex-col"> 
                         <TagGroup />
-                        { Object.keys(news).filter((category)=> categoryCheckbox.current[category]).map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category]} /> 
+                        { filteredCategoryList.map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category] } /> 
                         )}
                     </div> }
+                    { totalArticles.current}
             </Container>
+        </div>    
+            
         
     )
 }
@@ -81,6 +89,4 @@ const Landing= () => {
        // fetchNews()  
 
     },[])*/
-export default Landing;
-
-
+export default Landing

@@ -5,8 +5,8 @@ import { categoryContext } from '../categoryContext';
 
 
 const NewsCategory = ({category,categoryNews}) => {
-    const {categoryCheckbox,archive}= useContext(categoryContext)
-
+    const {archive, categoryCount}= useContext(categoryContext)
+    let filteredNews = []
     const filterNews= () => {
         let today= new Date().toDateString()
             return categoryNews.filter((news) => {
@@ -16,8 +16,11 @@ const NewsCategory = ({category,categoryNews}) => {
             })
     }
    
-    const filteredNews= (!archive.current)? filterNews() : categoryNews
+    filteredNews= (!archive.current)? filterNews() : categoryNews
     const renderComponent= filteredNews.length ? true : false
+    categoryCount.current[category]= filteredNews.length
+    
+
     return (
         <div className="flex flex-col items-center ">
             { renderComponent &&  <MainNews category={category} data={filteredNews[0]} fullnews= {categoryNews} /> }
