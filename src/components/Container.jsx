@@ -4,12 +4,12 @@ import Navbar from './Navbar'
 const Container = ({children}) => {
 
     return (
-        <div>
+        <>
            <Navbar /> 
            <div className="container w-78 mx-auto">
            {children}
             </div>
-        </div>
+        </>
     )
 }
 

@@ -25,7 +25,7 @@ const WriteToUsModal = ({showModal,setShowModal}) => {
     }
 
     return (
-        <div>
+        <>
            <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="md"
 >
         <Modal.Header>
@@ -57,7 +57,7 @@ const WriteToUsModal = ({showModal,setShowModal}) => {
           />
         </Modal.Footer>
       </Modal> 
-        </div>
+        </>
     )
 }
 
