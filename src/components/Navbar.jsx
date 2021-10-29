@@ -33,7 +33,7 @@ const Navbar= ()=>{
               
               <ShowPane showPane={showPane} setShowPane={setShowPane} />
               <Subscribe showSubscribeModal={showSubscribeModal} setShowSubscribeModal={setShowSubscribeModal}/>
-              <SearchBar openSearchBox={openSearchBox} setOpenSearchBox={setOpenSearchBox} />
+              <SearchBar openSearchBox={openSearchBox} setOpenSearchBox={setOpenSearchBox}  />
             </div>
         </div> 
  

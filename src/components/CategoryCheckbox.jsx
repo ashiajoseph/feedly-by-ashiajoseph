@@ -7,6 +7,8 @@ const CategoryCheckbox = ({id}) => {
     const  initialCheckedValue = (id === 'include archived articles')? archive.current : categoryCheckbox.current[id];
     const [check,toggle] = useState(initialCheckedValue)
     const label= id[0].toUpperCase()+ id.slice(1).toLowerCase()
+    
+
     const handleChange = (e) => {
         const {id,checked}= e.target
         if(id==='include archived articles')
