@@ -12,7 +12,7 @@ const NewsCategory = ({category,categoryNews}) => {
             return categoryNews.filter((news) => {
              let newsDate= new Date(news.date.slice(0,11)).toDateString()
 
-              return today===newsDate? true: false;
+              return today===newsDate
             })
     }
    

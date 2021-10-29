@@ -39,8 +39,11 @@ const Landing= () => {
     useEffect(()=> {
       fetchNews()  
     },[])
-
-   
+    useEffect(()=> {
+        totalArticles.current= getCategoryCount()
+        console.log(totalArticles.current,filter)  
+      },[filter])
+  
 
     const filteredCategoryList=Object.keys(news).filter((category)=> categoryCheckbox.current[category])
 
@@ -56,7 +59,7 @@ const Landing= () => {
                         { filteredCategoryList.map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category] } /> 
                         )}
                     </div> }
-                    { getCategoryCount() && <NoArticleFound news={news}/>}
+                    {  totalArticles.current &&<NoArticleFound news={news}/>}
             </Container>
         </div>    
             
