@@ -4,6 +4,7 @@ import axios from 'axios'
 import Container from "../Container";
 import { categoryContext } from '../categoryContext';
 import TagGroup from './TagGroup';
+import NoArticleFound from './NoArticleFound';
 const Landing= () => {
     const {categoryCheckbox, getCategoryCount, filter}= useContext(categoryContext)
     const [loading, setLoading] = useState(true)
@@ -55,7 +56,7 @@ const Landing= () => {
                         { filteredCategoryList.map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category] } /> 
                         )}
                     </div> }
-                    { totalArticles.current}
+                    { getCategoryCount() && <NoArticleFound news={news}/>}
             </Container>
         </div>    
             

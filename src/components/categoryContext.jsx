@@ -8,8 +8,12 @@ const CategoryProvider = ({children}) => {
     const archive = useRef(false)
     const [filter, toggleFilter]= useState(false)
 
-    const getCategoryCount = () =>{ let count =Object.values(categoryCount.current).reduce((a,b) => a + b, 0)
-    return count}
+    const getCategoryCount = () =>{ 
+        console.log(categoryCount.current)
+        return Object.values(categoryCount.current).every((count)=> count===0)
+    
+    }
+    
 
     return (
         <categoryContext.Provider value={{categoryCheckbox,toggleFilter, filter, archive, categoryCount,getCategoryCount }} >

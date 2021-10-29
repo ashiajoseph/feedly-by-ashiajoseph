@@ -12,7 +12,7 @@ const CategoryCheckbox = ({id}) => {
         if(id==='include archived articles')
            archive.current= checked
         else
-           { categoryCount.current[id]= checked? categoryCount.current[id] :0;
+           { categoryCount.current[id]= checked? 1 :0;
              categoryCheckbox.current[id] = checked
               }
         toggle(checked)
