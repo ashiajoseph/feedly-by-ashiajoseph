@@ -9,11 +9,14 @@ export const Subscribe = ({showSubscribeModal , setShowSubscribeModal}) => {
     const handleChange= (e) => {
       setEmail(() => e.target.value)
     }
+    const postData= async () => {
+      await axios.post(process.env.REACT_APP_WEBHOOK_URL, email);
+    }
     const handleClick= (type) => {
       if (type=='submit')
-      {
-
-      }
+      {  postData() }
+      
+      setEmail("")
       setShowSubscribeModal(false)
     }
 
