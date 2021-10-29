@@ -1,16 +1,19 @@
-import React,{ useState, useEffect, useContext, useRef} from 'react'
+import React,{ useState, useEffect,createContext, useContext, useRef} from 'react'
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
 import { categoryContext } from '../categoryContext';
 import TagGroup from './TagGroup';
 import NoArticleFound from './NoArticleFound';
+export const newsContext = createContext({})
+
 const Landing= () => {
-    const {categoryCheckbox, getCategoryCount, filter}= useContext(categoryContext)
+    const {categoryCheckbox}= useContext(categoryContext)
     const [loading, setLoading] = useState(true)
     const [news, setNews]= useState({})
     const totalArticles= useRef(0)
     
+
     // const fetchCategoryNews = async (category) => {
     //     try{
     //     const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
@@ -32,15 +35,16 @@ const Landing= () => {
         },Promise.resolve({}))
         await setNews(res)
         await setLoading(false)
+        
+       
         }catch(error)
         { console.log(error)}
 
     }
     useEffect(()=> {
-      fetchNews()  
+      fetchNews() 
     },[])
-  
-
+ 
     const filteredCategoryList=Object.keys(news).filter((category)=> categoryCheckbox.current[category])
 
     if (loading)
@@ -48,8 +52,8 @@ const Landing= () => {
 
     
     return (
-        <>
-            <Container>
+        <newsContext.Provider value={news}>
+            <Container >
                     { <div className="flex flex-col"> 
                         <TagGroup />
                         { filteredCategoryList.map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category] } /> 
@@ -57,7 +61,7 @@ const Landing= () => {
                     </div> }
                     {  totalArticles.current &&<NoArticleFound news={news}/>}
             </Container>
-        </>    
+        </newsContext.Provider>    
             
         
     )

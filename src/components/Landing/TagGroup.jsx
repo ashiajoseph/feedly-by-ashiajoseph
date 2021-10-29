@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import { categoryContext } from '../categoryContext';
-import { Tag } from "@bigbinary/neetoui/v2";
 import TagItem from './TagItem';
 
 
@@ -12,6 +11,7 @@ const TagGroup = () => {
         categoryCheckbox.current[category]= false
         categoryCount.current[category]= 0
         toggleFilter((prev)=> !prev)
+
     }
     return (
         <div className="flex">
