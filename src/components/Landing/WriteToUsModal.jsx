@@ -13,20 +13,17 @@ const WriteToUsModal = ({showModal,setShowModal}) => {
             return { ...prevData, [name]: value}
         })
     }
-    const handleCancel = () => {
+    
+    const postData= async () => {
+        await axios.post(process.env.REACT_APP_WEBHOOK_URL, info);
+      }
+    const handleClick = (type) => {
+       if(type==='submit')
+       { postData() }
        setInfo({name: '', email: '', message: ''}) 
        setShowModal(false)
     }
-    const handleSubmit = async() => {
-     try{
-        await axios.post("https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a", info);
-         setShowModal(false)
-         setInfo({name: '', email: '', message: ''})
 
-     }
-      catch(error)
-      {console.log(error)}  
-    }
     return (
         <div>
            <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="md"
@@ -49,13 +46,13 @@ const WriteToUsModal = ({showModal,setShowModal}) => {
         <Modal.Footer className="space-x-2">
           <Button
             label="Submit"
-            onClick={handleSubmit}
+            onClick={() => handleClick('submit')}
             size="large"
           />
           <Button
             style="text"
             label="Cancel"
-            onClick={handleCancel}
+            onClick={() => handleClick('cancel')}
             size="large"
           />
         </Modal.Footer>
