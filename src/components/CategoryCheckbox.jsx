@@ -3,7 +3,7 @@ import { Checkbox } from "@bigbinary/neetoui/v2";
 import { categoryContext } from './categoryContext';
 
 const CategoryCheckbox = ({id}) => {
-    const {categoryCheckbox,archive}= useContext(categoryContext)
+    const {categoryCheckbox,archive,categoryCount}= useContext(categoryContext)
     const  initialCheckedValue = (id === 'include archived articles')? archive.current : categoryCheckbox.current[id];
     const [check,toggle] = useState(initialCheckedValue)
     const label= id[0].toUpperCase()+ id.slice(1).toLowerCase()
@@ -12,7 +12,9 @@ const CategoryCheckbox = ({id}) => {
         if(id==='include archived articles')
            archive.current= checked
         else
-            categoryCheckbox.current[id] = checked
+           { categoryCount.current[id]= checked? 1 :0;
+             categoryCheckbox.current[id] = checked
+              }
         toggle(checked)
     }
     return (

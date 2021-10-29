@@ -5,11 +5,12 @@ import TagItem from './TagItem';
 
 
 const TagGroup = () => {
-    const {categoryCheckbox,toggleFilter}= useContext(categoryContext)
+    const {categoryCheckbox,toggleFilter, categoryCount}= useContext(categoryContext)
     const filteredCategories= Object.keys(categoryCheckbox.current).filter((category) => categoryCheckbox.current[category])
 
     const handleClose= (category) => {
         categoryCheckbox.current[category]= false
+        categoryCount.current[category]= 0
         toggleFilter((prev)=> !prev)
     }
     return (
@@ -27,3 +28,6 @@ const TagGroup = () => {
 }
 
 export default TagGroup
+
+
+
