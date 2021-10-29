@@ -2,9 +2,11 @@ import React, {useState} from 'react'
 import { Typography, Button, Tooltip} from "@bigbinary/neetoui/v2";
 import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 import ShowPane from './ShowPane.jsx'
+import { Subscribe } from './Subscribe.jsx';
 
 const Navbar= ()=>{
     const [showPane, setShowPane] = useState(false);
+    const [showSubscribeModal , setShowSubscribeModal] = useState(false);
 
     return (
         <div className="flex flex-row justify-between border-b-2 border-opacity-75 mb-5">
@@ -18,7 +20,7 @@ const Navbar= ()=>{
                     <button><Search className="mr-5 cursor-pointer" onClick={()=> {}}/></button>
                 </Tooltip>
                 <Tooltip placement={"bottom-start"} content={"Subscribe"}>
-                    <button><Notification className="mr-5 cursor-pointer" onClick={()=> {}}/></button>
+                    <button><Notification className="mr-5 cursor-pointer" onClick={()=> {setShowSubscribeModal(true)}}/></button>
                 </Tooltip>              
                 <Button
                 onClick={() => setShowPane(true)}
@@ -29,6 +31,7 @@ const Navbar= ()=>{
                 className= "mr-5"
               />
               <ShowPane showPane={showPane} setShowPane={setShowPane} />
+              <Subscribe showSubscribeModal={showSubscribeModal} setShowSubscribeModal={setShowSubscribeModal}/>
             </div>
         </div> 
     )

@@ -12,7 +12,7 @@ const ShowPane = ({showPane,setShowPane}) => {
         toggleFilter((prev)=> !prev)
         setShowPane(false)}
     return (
-        <div>
+        <>
             <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
             <Pane.Header className="mt-4">
             <Typography style="h2" weight="semibold">
@@ -47,7 +47,7 @@ const ShowPane = ({showPane,setShowPane}) => {
             />
             </Pane.Footer>
         </Pane>
-        </div>
+        </>
     )
 }
 
