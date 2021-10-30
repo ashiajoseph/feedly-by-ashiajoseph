@@ -3,7 +3,6 @@ import MainNews from './MainNews'
 import SubNews from './SubNews'
 import { categoryContext } from '../categoryContext';
 
-
 const NewsCategory = ({category,categoryNews}) => {
     const {archive, categoryCount}= useContext(categoryContext)
     let filteredNews = []

@@ -1,6 +1,7 @@
 import React from 'react'
 import NoNews from './NoNews'
 import SubNews from './SubNews'
+
 const NoArticleFound = ({news}) => {
     return (
         <>

@@ -4,6 +4,7 @@ import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 import ShowPane from './ShowPane.jsx'
 import { Subscribe } from './Subscribe.jsx';
 import SearchBar from './SearchBar.jsx';
+
 const Navbar= ()=>{
     const [showPane, setShowPane] = useState(false);
     const [showSubscribeModal , setShowSubscribeModal] = useState(false);

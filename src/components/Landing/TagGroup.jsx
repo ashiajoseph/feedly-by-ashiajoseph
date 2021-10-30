@@ -2,7 +2,6 @@ import React, {useContext} from 'react'
 import { categoryContext } from '../categoryContext';
 import TagItem from './TagItem';
 
-
 const TagGroup = () => {
     const {categoryCheckbox,toggleFilter, categoryCount}= useContext(categoryContext)
     const filteredCategories= Object.keys(categoryCheckbox.current).filter((category) => categoryCheckbox.current[category])
