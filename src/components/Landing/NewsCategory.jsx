@@ -4,26 +4,13 @@ import SubNews from './SubNews'
 import { categoryContext } from '../categoryContext';
 
 const NewsCategory = ({category,categoryNews}) => {
-    const {archive, categoryCount}= useContext(categoryContext)
-    let filteredNews = []
-    const filterNews= () => {
-        let today= new Date().toDateString()
-            return categoryNews.filter((news) => {
-             let newsDate= new Date(news.date.slice(0,11)).toDateString()
-
-              return today===newsDate
-            })
-    }
-   
-    filteredNews= (!archive.current)? filterNews() : categoryNews
-    const renderComponent= filteredNews.length ? true : false
-    categoryCount.current[category]= filteredNews.length
-   
+    
+    const renderComponent= categoryNews.length ? true : false   
 
     return (
         <div className="flex flex-col items-center ">
-            { renderComponent &&  <MainNews category={category} data={filteredNews[0]} fullnews= {categoryNews} /> }
-            { renderComponent && <SubNews category={category} data={filteredNews.slice(1,5)} fullnews= {categoryNews} /> }
+            { renderComponent &&  <MainNews category={category} data={categoryNews[0]} fullnews= {categoryNews} /> }
+            { renderComponent && <SubNews category={category} data={categoryNews.slice(1,5)} fullnews= {categoryNews} /> }
         </div>
     )
 }
