@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
-import { categoryContext } from '../categoryContext';
+import { filterContext } from '../filterContext';
 import TagItem from './TagItem';
 
 const TagGroup = () => {
-    const {categoryCheckbox,toggleFilter, categoryCount}= useContext(categoryContext)
+    const {categoryCheckbox,toggleFilter, categoryCount}= useContext(filterContext)
     const filteredCategories= Object.keys(categoryCheckbox.current).filter((category) => categoryCheckbox.current[category])
 
     const handleClose= (category) => {

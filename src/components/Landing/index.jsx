@@ -2,16 +2,16 @@ import React,{ useState, useEffect,createContext, useContext, useRef} from 'reac
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
-import { categoryContext } from '../categoryContext';
+import { filterContext } from '../filterContext';
 import TagGroup from './TagGroup';
 import NoArticleFound from './NoArticleFound';
 export const newsContext = createContext({})
 
 const Landing= () => {
-    const {categoryCheckbox}= useContext(categoryContext)
+    const {categoryCheckbox, archive, categoryCount,getCategoryCount}= useContext(filterContext)
     const [loading, setLoading] = useState(true)
     const [news, setNews]= useState({})
-    const totalArticles= useRef(0)
+    const articlesNotFound= useRef(0)
     
 
     // const fetchCategoryNews = async (category) => {
@@ -34,9 +34,7 @@ const Landing= () => {
             return {...acc}
         },Promise.resolve({}))
         await setNews(res)
-        await setLoading(false)
-        
-       
+        await setLoading(false)       
         }catch(error)
         { console.log(error)}
 
@@ -44,22 +42,45 @@ const Landing= () => {
     useEffect(()=> {
       fetchNews() 
     },[])
- 
-    const filteredCategoryList=Object.keys(news).filter((category)=> categoryCheckbox.current[category])
+    
+    const filteredCategoryList = Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category])
+    let filteredCategory_array= filteredCategoryList.map((category) => { 
+        if(typeof news[category] !== 'undefined')
+            categoryCount.current[category]= news[category].length
+        return  [ category , news[category]]})
+  
 
     if (loading)
         return <h3>Loading ...</h3>
 
-    
+    const filterNews= (categoryNews) => {
+            let today= new Date().toDateString()
+            return categoryNews.filter((news) => {
+                let newsDate= new Date(news.date.slice(0,11)).toDateString()
+                return today===newsDate
+                })
+    }
+
+    if(!archive.current)
+    {
+        filteredCategory_array=filteredCategory_array.map(([category,array]) => {
+           let reduced_array= filterNews(array)
+           categoryCount.current[category]= reduced_array.length
+           return [category, reduced_array]
+        })
+    }
+
+
+    articlesNotFound.current= getCategoryCount()
     return (
         <newsContext.Provider value={news}>
             <Container >
                     { <div className="flex flex-col"> 
                         <TagGroup />
-                        { filteredCategoryList.map((category,index)=> <NewsCategory key={index} category={category} categoryNews={news[category] } /> 
+                        { filteredCategory_array.map(([category,categoryNews],index)=> <NewsCategory key={index} category={category} categoryNews={categoryNews} /> 
                         )}
                     </div> }
-                    {  totalArticles.current &&<NoArticleFound news={news}/>}
+                    {  articlesNotFound.current &&<NoArticleFound news={news}/>}
             </Container>
         </newsContext.Provider>    
             

@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react'
 import { Checkbox } from "@bigbinary/neetoui/v2";
-import { categoryContext } from './categoryContext';
+import { filterContext } from './filterContext';
 
 const CategoryCheckbox = ({id}) => {
-    const {categoryCheckbox,archive,categoryCount}= useContext(categoryContext)
+    const {categoryCheckbox,archive,categoryCount}= useContext(filterContext)
     const  initialCheckedValue = (id === 'include archived articles')? archive.current : categoryCheckbox.current[id];
     const [check,toggle] = useState(initialCheckedValue)
     const label= id[0].toUpperCase()+ id.slice(1).toLowerCase()

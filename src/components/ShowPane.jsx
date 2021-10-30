@@ -3,10 +3,10 @@ import { Pane } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
 import  CategoryCheckbox from './CategoryCheckbox';
-import { categoryContext } from './categoryContext';
+import { filterContext } from './filterContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
-    const {categoryCheckbox, toggleFilter, filter}= useContext(categoryContext)
+    const {categoryCheckbox, toggleFilter, filter}= useContext(filterContext)
 
     const handleClick = () => { 
         toggleFilter((prev)=> !prev)

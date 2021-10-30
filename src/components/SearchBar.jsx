@@ -2,14 +2,14 @@ import React, {useState, useEffect, useContext, useCallback} from 'react'
 import ReactDOM from "react-dom"
 import { Input } from "@bigbinary/neetoui/v2";
 import { Search,Close,Right } from "@bigbinary/neeto-icons";
-import { categoryContext } from './categoryContext';
+import { filterContext } from './filterContext';
 import { newsContext } from './Landing';
 import {Link} from 'react-router-dom'
 import { debounce } from 'lodash';
 
 const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
     const [keyword, setKeyword] = useState("")
-    const {categoryCheckbox}= useContext(categoryContext)
+    const {categoryCheckbox}= useContext(filterContext)
     const newsDetails = useContext(newsContext)
     const deb = useCallback( debounce((searchword) => {setKeyword(searchword) 
     
@@ -57,7 +57,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
                 <Input placeholder="Search for an article." prefix={<Search size={16} />}  onChange={(e) => handleChange(e.target.value)}/>  
                 <div className={`my-3  ${bgColor} p-3 rounded flex flex-col max-h-96 overflow-clip overflow-hidden overflow-y-auto`}>
                     {
-                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details}) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url,category, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
+                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url,category, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index}>
                             {title}
                         </Link>)
                     }
