@@ -50,7 +50,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
     }
     const bgColor = filterNews(searchList).length ? 'bg-gray-50' : null 
     return  ReactDOM.createPortal(      
-        <div className="bg-gray-500	absolute inset-0 bg-opacity-40 "  >
+        <div className="bg-gray-500	fixed inset-0 bg-opacity-40  "  >
             <div className=" w-4/12 fixed top-1/4 left-1/3 mx-auto" >
                 <button><Close className="cursor-pointer absolute left-full top-5 	" size={28} onClick={handleClose}/></button>
                 <Input placeholder="Search for an article." prefix={<Search size={16} />}  onChange={(e) => handleChange(e.target.value)}/>  
