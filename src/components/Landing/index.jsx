@@ -42,9 +42,12 @@ const Landing= () => {
     useEffect(()=> {
       fetchNews() 
     },[])
- 
+    
     const filteredCategoryList = Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category])
-    let filteredCategory_array= filteredCategoryList.map((category) => { return  [ category , news[category]]})
+    let filteredCategory_array= filteredCategoryList.map((category) => { 
+        if(typeof news[category] !== 'undefined')
+            categoryCount.current[category]= news[category].length
+        return  [ category , news[category]]})
   
 
     if (loading)
