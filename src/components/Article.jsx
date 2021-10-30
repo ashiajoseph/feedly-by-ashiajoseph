@@ -4,6 +4,7 @@ import { Typography} from "@bigbinary/neetoui/v2"
 import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
 import Container from './Container';
+
 const Article= () => {
     const [relatedNews, setRelatedNews]= useState([])
     const location = useLocation()

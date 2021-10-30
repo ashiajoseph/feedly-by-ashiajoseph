@@ -6,6 +6,7 @@ import { categoryContext } from './categoryContext';
 import { newsContext } from './Landing';
 import {Link} from 'react-router-dom'
 import { debounce } from 'lodash';
+
 const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
     const [keyword, setKeyword] = useState("")
     const {categoryCheckbox}= useContext(categoryContext)

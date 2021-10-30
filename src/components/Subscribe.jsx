@@ -3,6 +3,7 @@ import { Modal } from "@bigbinary/neetoui/v2";
 import { Input } from "@bigbinary/neetoui/v2";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
 import axios from 'axios';
+
 export const Subscribe = ({showSubscribeModal , setShowSubscribeModal}) => {
     const [email, setEmail] = useState("")
 

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Typography, Button} from "@bigbinary/neetoui/v2";
 import { Highlight } from "@bigbinary/neeto-icons";
 import WriteToUsModal from './WriteToUsModal';
+
 const NoNews = () => {
     const [showModal, setShowModal] = useState(false);
     return (

@@ -1,5 +1,6 @@
 import React from 'react'
 import MiniNews from './MiniNews'
+
 const SubNews= ({category, data, fullnews}) => {
     let width= data.length ? "w-full" : " " 
     return (

@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Article from './components/Article';
 import Error from "./components/Error";
 import { CategoryProvider } from './components/categoryContext';
+
 const App =()=> {
   
   return (
