@@ -2,9 +2,9 @@ import React, {useState, useContext} from 'react'
 import { Checkbox } from "@bigbinary/neetoui/v2";
 import { filterContext } from './filterContext';
 
-const CategoryCheckbox = ({id}) => {
-    const {categoryCheckbox,archive,categoryCount}= useContext(filterContext)
-    const  initialCheckedValue = (id === 'include archived articles')? archive.current : categoryCheckbox.current[id];
+const CategoryCheckbox = ({id, checkGroup, archivetemp}) => {
+    const {categoryCheckbox,categoryCount}= useContext(filterContext)
+    const  initialCheckedValue = (id === 'include archived articles')? archivetemp.current : checkGroup[id];
     const [check,toggle] = useState(initialCheckedValue)
     const label= id[0].toUpperCase()+ id.slice(1).toLowerCase()
     
@@ -12,10 +12,11 @@ const CategoryCheckbox = ({id}) => {
     const handleChange = (e) => {
         const {id,checked}= e.target
         if(id==='include archived articles')
-           archive.current= checked
+            archivetemp.current= checked
+    
         else
            { categoryCount.current[id]= checked? 1 :0;
-             categoryCheckbox.current[id] = checked
+            checkGroup[id] = checked
               }
         toggle(checked)
     }

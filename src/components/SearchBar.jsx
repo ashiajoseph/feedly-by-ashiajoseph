@@ -50,7 +50,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
         setOpenSearchBox(false)
 
     }
-    console.log(searchList)
+
     const bgColor = filterNews(searchList).length ? 'bg-gray-50' : null 
     return  ReactDOM.createPortal(      
         <div className="bg-gray-500	fixed inset-0 bg-opacity-40  " onClick={()=> {setOpenSearchBox(false)}}  >
