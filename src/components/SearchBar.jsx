@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { Input } from "@bigbinary/neetoui/v2";
 import { Search,Close,Right } from "@bigbinary/neeto-icons";
 import { filterContext } from './filterContext';
-import { newsContext } from './Landing';
+import { newsContext } from '../Base';
 import {Link} from 'react-router-dom'
 import { debounce } from 'lodash';
 
@@ -39,25 +39,27 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
         deb(searchword.toLowerCase())
      }
 
-    const handleClose= () => {
-        setKeyword("")
-        setOpenSearchBox(false)
-    }
     const handleMouseEnter= (e) => {
         e.target.className= "text-white my-1 bg-black p-2 rounded-sm bg-opacity-90"
     }
     const handleMouseLeave= (e) => {
         e.target.className= "text-black  my-1 bg-gray-200 p-2 rounded-sm"
     }
+    const closeSearchBox = ( ) => {
+        setKeyword("")
+        setOpenSearchBox(false)
+
+    }
+    console.log(searchList)
     const bgColor = filterNews(searchList).length ? 'bg-gray-50' : null 
     return  ReactDOM.createPortal(      
-        <div className="bg-gray-500	fixed inset-0 bg-opacity-40  "  >
-            <div className=" w-4/12 fixed top-1/4 left-1/3 mx-auto" >
-                <button><Close className="cursor-pointer absolute left-full top-5 	" size={28} onClick={handleClose}/></button>
+        <div className="bg-gray-500	fixed inset-0 bg-opacity-40  " onClick={()=> {setOpenSearchBox(false)}}  >
+            <div className=" w-4/12 fixed top-1/4 left-1/3 mx-auto"onClick={(e)=> e.stopPropagation()}>
+           
                 <Input placeholder="Search for an article." prefix={<Search size={16} />}  onChange={(e) => handleChange(e.target.value)}/>  
                 <div className={`my-3  ${bgColor} p-3 rounded flex flex-col max-h-96 overflow-clip overflow-hidden overflow-y-auto`}>
                     {
-                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url,category, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index}>
+                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url,category, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index} onClick={closeSearchBox} >
                             {title}
                         </Link>)
                     }

@@ -1,4 +1,5 @@
-import React, {useState,useContext} from 'react'
+import React, {useContext} from 'react'
+import { useHistory } from 'react-router-dom';
 import { Pane } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
@@ -7,10 +8,12 @@ import { filterContext } from './filterContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
     const {categoryCheckbox, toggleFilter, filter}= useContext(filterContext)
-
+    const history = useHistory()
     const handleClick = () => { 
-        toggleFilter((prev)=> !prev)
-        setShowPane(false)}
+        toggleFilter((prev)=> !prev)     
+        setShowPane(false)
+        history.push('/')
+    }
     return (
         <>
             <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
