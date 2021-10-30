@@ -1,4 +1,5 @@
-import React, {useState,useContext} from 'react'
+import React, {useContext, useRef} from 'react'
+import { useHistory } from 'react-router-dom';
 import { Pane } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
@@ -6,11 +7,20 @@ import  CategoryCheckbox from './CategoryCheckbox';
 import { filterContext } from './filterContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
-    const {categoryCheckbox, toggleFilter, filter}= useContext(filterContext)
-
-    const handleClick = () => { 
-        toggleFilter((prev)=> !prev)
-        setShowPane(false)}
+    const {categoryCheckbox, toggleFilter, filter, archive}= useContext(filterContext)
+    let checkGroup = {...categoryCheckbox.current}
+    let archivetemp =  useRef(archive.current)
+    const history = useHistory() 
+    const handleSave = () => { 
+        categoryCheckbox.current ={...checkGroup}
+        archive.current= archivetemp.current
+        toggleFilter((prev)=> !prev)     
+        setShowPane(false)
+        history.push('/')
+    }
+    const handleCancel = () => { 
+        archivetemp.current= archive.current
+        setShowPane(false) }
     return (
         <>
             <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
@@ -24,10 +34,10 @@ const ShowPane = ({showPane,setShowPane}) => {
                 Category
             </Typography>
              <div className="ml-6">
-                {Object.keys(categoryCheckbox.current).map((id,index) => <CategoryCheckbox key={index} id={id} /> )}
+                {Object.keys(categoryCheckbox.current).map((id,index) => <CategoryCheckbox key={index} id={id} checkGroup={checkGroup} archivetemp={archivetemp}/> )}
             </div> 
             <div className="ml-4 pl-2 border-t-2 neeto-ui-text-gray-300 w-90">
-            <CategoryCheckbox  id={'include archived articles'}/>
+            <CategoryCheckbox  id={'include archived articles'} checkGroup={checkGroup} archivetemp={archivetemp}/>
             </div>
             </Pane.Body>
             <Pane.Footer className="flex items-center space-x-4 border-t-2 neeto-ui-text-gray-300 ">
@@ -35,14 +45,14 @@ const ShowPane = ({showPane,setShowPane}) => {
                 icon={Check}
                 size="large"
                 label="Save Changes"
-                onClick={handleClick}
+                onClick={handleSave}
                 className="mb-5"
             />
             <Button
                 style="text"
                 size="large"
                 label="Cancel"
-                onClick={() => setShowPane(false)}
+                onClick={handleCancel}
                 className="mb-5"
             />
             </Pane.Footer>

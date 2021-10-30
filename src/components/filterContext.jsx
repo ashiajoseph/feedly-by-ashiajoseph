@@ -12,9 +12,7 @@ const FilterProvider = ({children}) => {
     const [filter, toggleFilter]= useState(false)
     
     const getCategoryCount = () =>{ 
-
-        return Object.values(categoryCount.current).every((count)=> count===0)
-    
+     return Object.values(categoryCount.current).every((count)=> count===0)    
     }
     
 
