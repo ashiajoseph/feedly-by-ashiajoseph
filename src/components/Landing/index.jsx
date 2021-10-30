@@ -1,21 +1,23 @@
-import React,{ useState, useEffect,createContext, useContext, useRef} from 'react'
+import React,{useContext, useRef} from 'react'
 import NewsCategory from './NewsCategory'
 import Container from "../Container";
 import { filterContext } from '../filterContext';
 import TagGroup from './TagGroup';
 import NoArticleFound from './NoArticleFound';
-import { newsContext } from '../../Base';
+import { newsContext} from '../newsContext'
 
 const Landing= () => {
     const {categoryCheckbox, archive, categoryCount,getCategoryCount}= useContext(filterContext)
-    const news= useContext(newsContext)
+    const {news,categoryNews}= useContext(newsContext)
     const articlesNotFound= useRef(0)
     
     const filteredCategoryList = Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category])
     let filteredCategory_array= filteredCategoryList.map((category) => { 
         if(typeof news[category] !== 'undefined')
-            categoryCount.current[category]= news[category].length
-        return  [ category , news[category]]})
+        {   categoryCount.current[category]= news[category].length
+            categoryNews.current[category] = news[category]
+        }   
+        return  [ category , news[category]] })
       
 
     const filterNews= (categoryNews) => {

@@ -7,7 +7,7 @@ import  CategoryCheckbox from './CategoryCheckbox';
 import { filterContext } from './filterContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
-    const {categoryCheckbox, toggleFilter, filter, archive}= useContext(filterContext)
+    const {categoryCheckbox, toggleFilter, archive}= useContext(filterContext)
     let checkGroup = {...categoryCheckbox.current}
     let archivetemp =  useRef(archive.current)
     const history = useHistory() 

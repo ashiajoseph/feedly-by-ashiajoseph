@@ -14,7 +14,7 @@ export const Subscribe = ({showSubscribeModal , setShowSubscribeModal}) => {
       await axios.post(process.env.REACT_APP_WEBHOOK_URL, email);
     }
     const handleClick= (type) => {
-      if (type=='submit')
+      if (type==='submit')
       {  postData() }
 
       setEmail("")
@@ -29,7 +29,7 @@ export const Subscribe = ({showSubscribeModal , setShowSubscribeModal}) => {
         size="xs"
       >
         <Modal.Header>
-          <img src={process.env.PUBLIC_URL + '/subscribe.png'} alt="Subscribe image"/>
+          <img src={process.env.PUBLIC_URL + '/subscribe.png'} alt="subscription"/>
           <Typography style="h2" className="mt-5 ">Subscribe to Feed.ly</Typography>
         </Modal.Header>
         <Modal.Body>

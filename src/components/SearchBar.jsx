@@ -1,31 +1,27 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import React, {useState, useContext, useCallback} from 'react'
 import ReactDOM from "react-dom"
 import { Input } from "@bigbinary/neetoui/v2";
-import { Search,Close,Right } from "@bigbinary/neeto-icons";
-import { filterContext } from './filterContext';
-import { newsContext } from '../Base';
+import { Search } from "@bigbinary/neeto-icons";
+import { newsContext } from './newsContext';
 import {Link} from 'react-router-dom'
 import { debounce } from 'lodash';
 
 const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
     const [keyword, setKeyword] = useState("")
-    const {categoryCheckbox}= useContext(filterContext)
-    const newsDetails = useContext(newsContext)
+    const {categoryNews} = useContext(newsContext)
     const deb = useCallback( debounce((searchword) => {setKeyword(searchword) 
     
-    },500),[])
+    },400),[])
     if(!openSearchBox) return <div></div>
    
     let searchList =[]
 
-    const filteredCategoryList = Object.keys(categoryCheckbox.current).filter((category)=> categoryCheckbox.current[category])
-    const category_array25= filteredCategoryList.map((category) => { return  [ category , newsDetails[category]]})
-   
+    const category_array25 = Object.keys(categoryNews.current).map((category) => { return  [ category , categoryNews.current[category]]})
     category_array25.forEach(([category,array]) => {
-      let obj= array.map(({title,url,category, author, content,date, readMoreUrl,})=> { return {title,url,category, author, content,date, readMoreUrl, details: array} })
+      let obj= array.map(({title,url, author, content,date, readMoreUrl})=> { return {title,url,category, author, content,date, readMoreUrl, details: array} })
       searchList= searchList.concat(obj)
    } )
-
+     console.log(category_array25)
     const filterNews= (searchList) => {    
         let filteredList= []
         if(keyword)
@@ -59,7 +55,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
                 <Input placeholder="Search for an article." prefix={<Search size={16} />}  onChange={(e) => handleChange(e.target.value)}/>  
                 <div className={`my-3  ${bgColor} p-3 rounded flex flex-col max-h-96 overflow-clip overflow-hidden overflow-y-auto`}>
                     {
-                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url,category, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index} onClick={closeSearchBox} >
+                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index} onClick={closeSearchBox} >
                             {title}
                         </Link>)
                     }
@@ -69,6 +65,3 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
 }
 
 export default SearchBar
-//{ filteredList.map((news,index) => <h4 key={index}> {news.title}</h4> )}
-//onClick={(e)=> e.stopPropagation()}
-//onClick={()=> {setOpenSearchBox(false)}}

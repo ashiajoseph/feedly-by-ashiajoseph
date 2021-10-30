@@ -1,8 +1,8 @@
-import React,{ useContext } from 'react'
+import React from 'react'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {Link} from 'react-router-dom'
 
-const MiniNews= ({category,data,fullnews})=>{
+const MiniNews= ({category,data})=>{
     //const numRef= useRef(Math.floor(Math.random() * 100 ))
     const img_src= `https://picsum.photos/id/33/`
    
@@ -17,7 +17,7 @@ const MiniNews= ({category,data,fullnews})=>{
                          {`${data.author} at ${data.time} on ${data.date}`} 
                     </Typography>
                     
-                    <Link to={{ pathname:`/article/${data.url.slice(33)}`,state: {img_src:`${img_src}550/300`,category, ...data,fullnews} }} className="mt-3 text-read_more">Read More</Link>
+                    <Link to={{ pathname:`/article/${data.url.slice(33)}`,state: {img_src:`${img_src}550/300`,category, ...data} }} className="mt-3 text-read_more">Read More</Link>
   
                     
                 </div>

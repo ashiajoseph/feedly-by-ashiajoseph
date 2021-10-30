@@ -1,13 +1,15 @@
 import './App.css';
-import Base from './Base';
+import Base from './components/Base';
 import { FilterProvider } from './components/filterContext';
-
+import { NewsProvider } from './components/newsContext';
 const App =()=> {
   
   return (
     <>
       <FilterProvider >
-        <Base />
+        <NewsProvider >
+          <Base />
+        </NewsProvider>
       </FilterProvider>
     </>
   );
