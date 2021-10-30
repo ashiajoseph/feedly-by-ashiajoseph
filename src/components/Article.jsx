@@ -1,16 +1,19 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useContext} from 'react'
 import { useLocation } from 'react-router-dom'
 import { Typography} from "@bigbinary/neetoui/v2"
 import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
 import Container from './Container';
-
+import { newsContext } from './newsContext';
 const Article= () => {
     const [relatedNews, setRelatedNews]= useState([])
+    const {categoryNews} = useContext(newsContext)
     const location = useLocation()
     const data= location.state
+    const fullnews = categoryNews.current[data.category] // category news via newsContext
+   
     const filterRelatedNews =  ()=> {
-         setRelatedNews(() => data.fullnews.filter((news)=> news.url!== data.url))
+         setRelatedNews(() => fullnews.filter((news)=> news.url!== data.url))
      }
     useEffect(()=>{
         filterRelatedNews()
@@ -43,7 +46,7 @@ cursor-pointer" onClick={()=>{navigator.clipboard.writeText(data.readMoreUrl)}}/
                      </Typography>
                 </div>
                 <div className="flex flex-col items-center ">
-                        <SubNews category={data.category} data={relatedNews.slice(1,5)} fullnews={data.fullnews} />
+                        <SubNews category={data.category} data={relatedNews.slice(1,5)}  />
                 </div>
             </div>
         </div>

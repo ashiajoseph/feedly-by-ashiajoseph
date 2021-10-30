@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { Input } from "@bigbinary/neetoui/v2";
 import { Search,Close,Right } from "@bigbinary/neeto-icons";
 import { filterContext } from './filterContext';
-import { newsContext } from '../Base';
+import { newsContext } from './newsContext';
 import {Link} from 'react-router-dom'
 import { debounce } from 'lodash';
 

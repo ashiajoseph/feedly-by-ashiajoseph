@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { Typography} from "@bigbinary/neetoui/v2"
 import {Link} from 'react-router-dom'
 
-const MainNews= ({category,data,fullnews}) => {
+const MainNews= ({category,data}) => {
     const heading =  category[0].toUpperCase()+ category.slice(1).toLowerCase()
 
     return (
@@ -23,7 +23,7 @@ const MainNews= ({category,data,fullnews}) => {
                          {data.content.slice(0,300)}..... 
                     </Typography>
                     
-                    <Link to={{ pathname:`/article/${data.url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, ...data,fullnews}  }} className="mt-3 text-read_more">Read More</Link>
+                    <Link to={{ pathname:`/article/${data.url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, ...data}  }} className="mt-3 text-read_more">Read More</Link>
                     
                 </div>
             </div>
