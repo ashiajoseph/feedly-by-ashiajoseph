@@ -5,6 +5,7 @@ import Article from './Article';
 import Error from "./Error";
 import { filterContext} from './filterContext'
 import { newsContext } from './newsContext';
+import Loading from './Loading';
 import axios from 'axios'
 
 const Base = () => {
@@ -33,7 +34,7 @@ const Base = () => {
   },[])
 
   if (loading)
-  return <h3> Loading ...</h3>
+  return <Loading />
   
   return (
         <>
