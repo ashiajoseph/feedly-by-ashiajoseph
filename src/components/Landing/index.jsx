@@ -1,4 +1,4 @@
-import React,{ useState, useEffect,createContext, useContext, useRef} from 'react'
+import React,{useContext, useRef} from 'react'
 import NewsCategory from './NewsCategory'
 import Container from "../Container";
 import { filterContext } from '../filterContext';

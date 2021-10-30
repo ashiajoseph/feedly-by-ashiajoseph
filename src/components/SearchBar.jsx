@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import React, {useState, useContext, useCallback} from 'react'
 import ReactDOM from "react-dom"
 import { Input } from "@bigbinary/neetoui/v2";
-import { Search,Close,Right } from "@bigbinary/neeto-icons";
+import { Search } from "@bigbinary/neeto-icons";
 import { filterContext } from './filterContext';
 import { newsContext } from './newsContext';
 import {Link} from 'react-router-dom'
@@ -59,7 +59,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
                 <Input placeholder="Search for an article." prefix={<Search size={16} />}  onChange={(e) => handleChange(e.target.value)}/>  
                 <div className={`my-3  ${bgColor} p-3 rounded flex flex-col max-h-96 overflow-clip overflow-hidden overflow-y-auto`}>
                     {
-                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url,category, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index} onClick={closeSearchBox} >
+                        filterNews(searchList).map(({title,url,category, author, content,date, readMoreUrl, details},index) => <Link to={{ pathname:`/article/${url.slice(33)}`,state: {img_src:"https://picsum.photos/id/164/520/260",category, title,url, author, content,date, readMoreUrl,fullnews:details }  }} className="text-black my-1 bg-gray-200 p-2 rounded-sm" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} key={index} onClick={closeSearchBox} >
                             {title}
                         </Link>)
                     }

@@ -1,4 +1,4 @@
-import React,{ useState, useEffect,createContext, useContext, useRef} from 'react'
+import React,{ useState, useEffect, useContext} from 'react'
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Landing from './Landing'
 import Article from './Article';
@@ -8,7 +8,7 @@ import { newsContext } from './newsContext';
 import axios from 'axios'
 
 const Base = () => {
-  const {categoryCheckbox, archive, categoryCount,getCategoryCount}= useContext(filterContext)
+  const {categoryCheckbox}= useContext(filterContext)
   const {setNews}= useContext(newsContext)
   const [loading, setLoading] = useState(true)
   

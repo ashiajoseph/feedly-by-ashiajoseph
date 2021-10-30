@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import { Modal } from "@bigbinary/neetoui/v2";
 import { Input, Textarea } from "@bigbinary/neetoui/v2";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
