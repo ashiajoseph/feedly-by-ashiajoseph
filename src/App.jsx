@@ -3,19 +3,19 @@ import Landing from './components/Landing'
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Article from './components/Article';
 import Error from "./components/Error";
-import { CategoryProvider } from './components/categoryContext';
+import { FilterProvider } from './components/filterContext';
 
 const App =()=> {
   
   return (
     <Router>
-      <CategoryProvider >
+      <FilterProvider >
         <Switch>
         <Route exact path="/" component={Landing} />
         <Route  exact path="/article/:id" component={Article} />
         <Route path="*" component={Error} />
         </Switch>
-      </CategoryProvider>
+      </FilterProvider>
     </Router>
   );
 }

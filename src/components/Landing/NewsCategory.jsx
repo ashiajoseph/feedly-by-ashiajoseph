@@ -1,7 +1,7 @@
 import React,{useState, useContext} from 'react'
 import MainNews from './MainNews'
 import SubNews from './SubNews'
-import { categoryContext } from '../categoryContext';
+import { filterContext } from '../filterContext';
 
 const NewsCategory = ({category,categoryNews}) => {
     

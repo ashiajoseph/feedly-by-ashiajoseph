@@ -2,13 +2,13 @@ import React,{ useState, useEffect,createContext, useContext, useRef} from 'reac
 import NewsCategory from './NewsCategory'
 import axios from 'axios'
 import Container from "../Container";
-import { categoryContext } from '../categoryContext';
+import { filterContext } from '../filterContext';
 import TagGroup from './TagGroup';
 import NoArticleFound from './NoArticleFound';
 export const newsContext = createContext({})
 
 const Landing= () => {
-    const {categoryCheckbox, archive, categoryCount,getCategoryCount}= useContext(categoryContext)
+    const {categoryCheckbox, archive, categoryCount,getCategoryCount}= useContext(filterContext)
     const [loading, setLoading] = useState(true)
     const [news, setNews]= useState({})
     const articlesNotFound= useRef(0)

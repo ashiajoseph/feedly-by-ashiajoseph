@@ -2,14 +2,14 @@ import React, {useState, useEffect, useContext, useCallback} from 'react'
 import ReactDOM from "react-dom"
 import { Input } from "@bigbinary/neetoui/v2";
 import { Search,Close,Right } from "@bigbinary/neeto-icons";
-import { categoryContext } from './categoryContext';
+import { filterContext } from './filterContext';
 import { newsContext } from './Landing';
 import {Link} from 'react-router-dom'
 import { debounce } from 'lodash';
 
 const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
     const [keyword, setKeyword] = useState("")
-    const {categoryCheckbox}= useContext(categoryContext)
+    const {categoryCheckbox}= useContext(filterContext)
     const newsDetails = useContext(newsContext)
     const deb = useCallback( debounce((searchword) => {setKeyword(searchword) 
     
