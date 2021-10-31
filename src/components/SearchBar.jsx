@@ -21,7 +21,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
       let obj= array.map(({title,url, author, content,date, readMoreUrl})=> { return {title,url,category, author, content,date, readMoreUrl, details: array} })
       searchList= searchList.concat(obj)
    } )
-     console.log(category_array25)
+ 
     const filterNews= (searchList) => {    
         let filteredList= []
         if(keyword)

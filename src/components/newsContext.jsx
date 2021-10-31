@@ -5,7 +5,7 @@ const newsContext = createContext()
 const NewsProvider = ({children}) => {
     const [news,setNews] = useState({})
     const categoryNews = useRef({})
-
+    
     return (
         <newsContext.Provider value={{news,setNews,categoryNews}} >
           {children}
