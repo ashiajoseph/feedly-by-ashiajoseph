@@ -5,15 +5,25 @@ import { Check } from "@bigbinary/neeto-icons";
 import { Typography, Button} from "@bigbinary/neetoui/v2";
 import  CategoryCheckbox from './CategoryCheckbox';
 import { filterContext } from './filterContext';
+import { newsContext } from './newsContext';
 
 const ShowPane = ({showPane,setShowPane}) => {
     const {categoryCheckbox, toggleFilter, archive}= useContext(filterContext)
+    const {categoryNews} = useContext(newsContext)
     let checkGroup = {...categoryCheckbox.current}
     let archivetemp =  useRef(archive.current)
     const history = useHistory() 
+
+    const removeFromCategoryNews = () => {
+           Object.keys(categoryCheckbox.current).filter(category => !categoryCheckbox.current[category]).map(category => {
+            categoryNews.current[category] =[]   
+           })
+    }
+
     const handleSave = () => { 
         categoryCheckbox.current ={...checkGroup}
         archive.current= archivetemp.current
+        removeFromCategoryNews()
         toggleFilter((prev)=> !prev)     
         setShowPane(false)
         history.push('/')

@@ -21,7 +21,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
       let obj= array.map(({title,url, author, content,date, readMoreUrl})=> { return {title,url,category, author, content,date, readMoreUrl, details: array} })
       searchList= searchList.concat(obj)
    } )
-     console.log(category_array25)
+ 
     const filterNews= (searchList) => {    
         let filteredList= []
         if(keyword)
@@ -49,7 +49,7 @@ const SearchBar = ({openSearchBox,setOpenSearchBox}) => {
 
     const bgColor = filterNews(searchList).length ? 'bg-gray-50' : null 
     return  ReactDOM.createPortal(      
-        <div className="bg-gray-500	fixed inset-0 bg-opacity-40  " onClick={()=> {setOpenSearchBox(false)}}  >
+        <div className="bg-gray-500	fixed inset-0 bg-opacity-40  " onClick={closeSearchBox}  >
             <div className=" w-4/12 fixed top-1/4 left-1/3 mx-auto"onClick={(e)=> e.stopPropagation()}>
            
                 <Input placeholder="Search for an article." prefix={<Search size={16} />}  onChange={(e) => handleChange(e.target.value)}/>  
