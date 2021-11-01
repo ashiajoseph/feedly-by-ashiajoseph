@@ -5,12 +5,13 @@ import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
 import Container from './Container';
 import { newsContext } from './newsContext';
+
 const Article= () => {
     const [relatedNews, setRelatedNews]= useState([])
-    const {categoryNews} = useContext(newsContext)
+    const {news} = useContext(newsContext)
     const location = useLocation()
     const data= location.state
-    const fullnews = categoryNews.current[data.category] // category news via newsContext
+    const fullnews = news[data.category] // category news via newsContext
    
     const filterRelatedNews =  ()=> {
          setRelatedNews(() => fullnews.filter((news)=> news.url!== data.url))

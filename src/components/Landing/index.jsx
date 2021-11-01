@@ -46,7 +46,7 @@ const Landing= () => {
                         { filteredCategory_array.map(([category,categoryNews],index)=> <NewsCategory key={index} category={category} categoryNews={categoryNews} /> 
                         )}
                     </div> }
-                    {  articlesNotFound.current &&<NoArticleFound news={news}/>}
+                    {  articlesNotFound.current &&<NoArticleFound/>}
             </Container>   
             
         
