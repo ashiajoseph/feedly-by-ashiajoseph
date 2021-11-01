@@ -46,50 +46,11 @@ const Landing= () => {
                         { filteredCategory_array.map(([category,categoryNews],index)=> <NewsCategory key={index} category={category} categoryNews={categoryNews} /> 
                         )}
                     </div> }
-                    {  articlesNotFound.current &&<NoArticleFound news={news}/>}
+                    {  articlesNotFound.current &&<NoArticleFound/>}
             </Container>   
             
         
     )
 }
-/* Object.keys(newsData).map((category,index)=>{
-                let categoryNews= !filter ? filterNews(category) : newsData[category]} 
-                
-  useEffect(()=> {
-        const fetchNews= async () => {
-        
-            try{
-            let res= await Object.keys(newsData).reduce( async (prevPromise, category)=>{
-                const acc= await prevPromise
-                const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
-                const resObj= await response.data
-                const data=  resObj.data
-                acc[category]= data
-                return {...acc}
-            },Promise.resolve({}))
-            setNewsData(res)
-            }catch(error)
-            { console.log(error)}
-            
-            // const response= await axios.get('https://inshortsapi.vercel.app/news?category=sports')
-            // const data= await response.data.data
-            // setNewsData( prev => {return{...prev,['sports']: data}})
 
-        }
-       // fetchNews()  
-
-    },[])
-    
-        
-
-    // const fetchCategoryNews = async (category) => {
-    //     try{
-    //     const response= await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
-    //     const data= await response.data
-    //     return data
-    //     }catch(error)
-    //     { console.error(error)}
-    // }
-
-    */
 export default Landing

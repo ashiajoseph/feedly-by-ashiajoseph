@@ -4,15 +4,21 @@ import { Search, Filter, Notification } from "@bigbinary/neeto-icons";
 import ShowPane from './ShowPane.jsx'
 import { Subscribe } from './Subscribe.jsx';
 import SearchBar from './SearchBar.jsx';
+import { useHistory } from 'react-router-dom';
 
 const Navbar= ()=>{
     const [showPane, setShowPane] = useState(false);
     const [showSubscribeModal , setShowSubscribeModal] = useState(false);
     const [ openSearchBox, setOpenSearchBox]= useState(false)
+    const history = useHistory() 
+
+    const handleClick = () => {
+        history.push('/')
+    }
     return (
         <div className="flex flex-row justify-between border-b-2 border-opacity-75 mb-5">
-            <div className="p-3 m-2">
-            <Typography style="h4" weight="semibold" className="neeto-ui-text-gray-500">
+            <div className="p-3 m-2 ">
+            <Typography style="h4" weight="semibold" className="neeto-ui-text-gray-500 cursor-pointer" onClick={handleClick}>
             Feed.ly
             </Typography>
             </div>

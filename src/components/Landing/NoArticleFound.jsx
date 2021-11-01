@@ -1,13 +1,17 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import NoNews from './NoNews'
 import SubNews from './SubNews'
+import { newsContext} from '../newsContext'
 
-const NoArticleFound = ({news}) => {
+const NoArticleFound = () => {
+    const {news}= useContext(newsContext)
+
+
     return (
         <>
             <NoNews />
             <div className="flex flex-col items-center ">
-              <SubNews category='national' data={news['national'].slice(1,5)} fullnews= {news['national']} /> 
+              <SubNews category='all' data={news['all'].slice(2,6)}  /> 
             </div>           
         </>
     )

@@ -1,4 +1,3 @@
-import './App.css';
 import Base from './components/Base';
 import { FilterProvider } from './components/filterContext';
 import { NewsProvider } from './components/newsContext';
