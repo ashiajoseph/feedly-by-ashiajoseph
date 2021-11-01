@@ -1,6 +1,6 @@
 import React, {useState,useEffect, useContext} from 'react'
 import { useLocation } from 'react-router-dom'
-import { Typography} from "@bigbinary/neetoui/v2"
+import { Typography, Tooltip, Toastr} from "@bigbinary/neetoui/v2"
 import { Copy } from "@bigbinary/neeto-icons";
 import SubNews from './Landing/SubNews'
 import Container from './Container';
@@ -20,14 +20,22 @@ const Article= () => {
         window.scrollTo(0, 0);
     },[location])
 
+    const handleClick = ()=>{
+        const link = (data.readMoreUrl) ? data.readMoreUrl : 'The article has no readMoreUrl. Hence no link to be copied.'
+        navigator.clipboard.writeText(link)       
+    }
     return (
     <Container>
         <div className="flex justify-center mt-10 mb-5">
             <div className="flex flex-col  ">
-                <Typography style="h1" className="neeto-ui-text-gray-700 tracking-wide	mt-3 ">
-                {data.title} <Copy className="inline neeto-ui-text-gray-600
-cursor-pointer" onClick={()=>{navigator.clipboard.writeText(data.readMoreUrl)}}/>
-                </Typography>  
+                
+                    <Typography style="h1" className="neeto-ui-text-gray-700 tracking-wide	mt-3 ">
+                    {data.title} 
+                    <Tooltip placement={"bottom-start"} content={"Copy link"}> 
+                       <button> <Copy className="inline neeto-ui-text-gray-600 cursor-pointer" onClick={handleClick}/></button>
+                    </Tooltip> 
+                    </Typography> 
+                
                 <Typography style="h5" className="neeto-ui-text-gray-500 mt-3">
                 {`${data.author} at ${data.time} on ${data.date}`} 
                 </Typography> 
